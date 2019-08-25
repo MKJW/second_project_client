@@ -20,4 +20,15 @@ interface RegisterCourseAPI{
     fun postRegisterCourse(
         @Body studentCourse: Student_Course
     ): Observable<String>
+
+    @POST("/courses/check")
+    fun getCourse(
+        @Body studentCourse: Student_Course
+    ): Observable<String>
+
+    @POST("/courses/unregister")
+    fun postUnregisterCourse(
+        @Body studentCourse: Student_Course
+    ): Observable<String>
+
 }

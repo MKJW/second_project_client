@@ -1,6 +1,7 @@
 package com.mksoft.mkjw_second_project.model.Course
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
@@ -17,4 +18,7 @@ interface Studnt_CourseDao {
 
     @Insert(onConflict = REPLACE)
     fun insertAll(vararg studentCourse: Student_Course)
+
+    @Delete
+    fun delete(student_course:Student_Course)
 }

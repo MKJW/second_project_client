@@ -11,9 +11,9 @@
     <RelativeLayout
             android:id="@+id/register_courses_page_item_backgroundLayout_RelativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_height="70dp">
         <TextView
+                android:layout_margin="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/register_courses_page_item_courseName_TextView"
@@ -24,26 +24,36 @@
                 app:mutableText="@{viewModel.getCourseName()}"
         />
         <Button
+
+                android:layout_margin="15dp"
                 android:id="@+id/register_courses_page_item_courseStateButton_Button"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_centerInParent="true"
                 android:layout_alignParentRight="true"
-                android:onClick="@{viewModel::requestRegisterCourse}"
+                android:onClick="@{viewModel::checkState}"
                 app:mutableBackground="@{viewModel.getButtonBackGrond()}"
                 app:mutableText="@{viewModel.getButtonText()}"
                 app:mutableVisibility="@{viewModel.getButtonVisibility()}"
-                app:mutableButtonLockState="@{viewModel.getButtonLockState()}"
         />
 
         <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+
+                android:layout_margin="15dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
                 app:mutableVisibility="@{viewModel.getLoadingVisibility()}"
         />
 
+        <View
+                android:layout_margin="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_centerInParent="true"
+                android:background="#e9ecef"
+                android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 
