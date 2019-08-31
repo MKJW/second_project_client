@@ -45,9 +45,8 @@ class RegisterCourseViewModel : BaseViewModel(){
         }
     }
     fun requestDeleteCourse(){
-        subscription =Observable.fromCallable {
-            registerCourseAPI.postUnregisterCourse(Student_Course(/*TEMP_SCHOOL_ID,*/ courseId, TEMP_STUDENT_ID))
-        }.subscribeOn(Schedulers.io())
+        subscription =registerCourseAPI.postUnregisterCourse(/*TEMP_SCHOOL_ID,*/ courseId, TEMP_STUDENT_ID)
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { startRequestRegisterCourse() }
             .doOnTerminate { finishrequestRegisterCourse() }
@@ -58,9 +57,8 @@ class RegisterCourseViewModel : BaseViewModel(){
     }
     fun requestRegisterCourse(){
         //서버에 코스등록 요청
-        subscription =Observable.fromCallable {
-            registerCourseAPI.postRegisterCourse(Student_Course(/*TEMP_SCHOOL_ID,*/ courseId, TEMP_STUDENT_ID))
-        }.subscribeOn(Schedulers.io())
+        subscription =registerCourseAPI.postRegisterCourse(/*TEMP_SCHOOL_ID,*/ courseId, TEMP_STUDENT_ID)
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { startRequestRegisterCourse() }
             .doOnTerminate { finishrequestRegisterCourse() }
@@ -108,8 +106,8 @@ class RegisterCourseViewModel : BaseViewModel(){
 
         }.concatMap {
                 dbCourse ->
-            if(dbCourse == 0) {
-                registerCourseAPI.checkCourse(Student_Course(course_id, TEMP_STUDENT_ID)).concatMap {
+            if(dbCourse == 2) {
+                registerCourseAPI.checkCourse(course_id, TEMP_STUDENT_ID).concatMap {
                         apiCourse ->
                     if (apiCourse) {
                         insertSuccessCourse()
