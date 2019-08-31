@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+    </data>
+
+    <RelativeLayout
+            android:id="@+id/login_page_activity_background_RelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+        <TextView
+                android:id="@+id/login_page_activity_appTitle_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="어플이름"
+                android:textStyle="bold"
+                android:textSize="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+        />
+
+        <LinearLayout
+                android:id="@+id/login_page_activity_loginBoxLayout_LinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+
+            <LinearLayout
+
+                    android:id="@+id/login_page_activity_idAndPwLayout_LinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                <EditText
+                        android:id="@+id/login_page_activity_inputID_EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="ID"
+                        android:inputType="textPersonName" />
+
+                <EditText
+                        android:id="@+id/login_page_activity_inputPW_EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="PW"
+                        android:inputType="textPassword" />
+
+            </LinearLayout>
+
+            <Button
+                    android:id="@+id/login_page_activity_signIn_Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:background="#84d7d4"
+                    android:text="Login" />
+
+            <Button
+                    android:id="@+id/login_page_activity_signUp_Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="회원가입" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/login_page_activity_loginBoxLayout_LinearLayout"
+                android:id="@+id/login_page_activity_optionBox_LinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+        >
+            <TextView
+                    android:id="@+id/login_page_activity_searchPW_TextView"
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="비밀번호 찾기"/>
+            <TextView
+                    android:id="@+id/login_page_activity_connectCustomerCenter_TextView"
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="고객 센터"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

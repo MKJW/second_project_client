@@ -10,7 +10,7 @@
     </data>
 
     <RelativeLayout
-            android:id="@+id/backgroundLayout"
+            android:id="@+id/register_courses_page_activity_backgroundLayout_RelativeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
     >
