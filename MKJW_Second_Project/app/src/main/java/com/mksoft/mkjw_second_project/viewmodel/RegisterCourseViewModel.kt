@@ -51,7 +51,7 @@ class RegisterCourseViewModel : BaseViewModel(){
             .doOnSubscribe { startRequestRegisterCourse() }
             .doOnTerminate { finishrequestRegisterCourse() }
             .subscribe(
-                {result -> sucessRequestDeleteCourse()},//result가 Observable이어야 한다.
+                {result -> initBeforeRegisteredCourseState(true)},//result가 Observable이어야 한다.
                 {failRequestCourse()}
             )
     }
@@ -64,7 +64,7 @@ class RegisterCourseViewModel : BaseViewModel(){
             .doOnSubscribe { startRequestRegisterCourse() }
             .doOnTerminate { finishrequestRegisterCourse() }
             .subscribe(
-                {result -> sucessRequestRegisterCourse()},//result가 Observable이어야 한다.
+                {result -> initRegisteredCourseState(true)},//result가 Observable이어야 한다.
                 {failRequestCourse()}//일단은 겹치는 수강으로 실패한 경우
             )
 
@@ -110,12 +110,13 @@ class RegisterCourseViewModel : BaseViewModel(){
             if(dbCourse == 0)
                 registerCourseAPI.getCourse(Student_Course(course_id, TEMP_STUDENT_ID) ).concatMap {
                         apiCourse ->Observable.just(1)
-                    if(apiCourse == "True"){
+                    /*if(apiCourse == "True"){
                         insertSuccessCourse()
                         Observable.just(1)
                     }else{
                         Observable.just(0)
-                    }
+                    }//반환 받는 타입을 확인해보자...
+                    */
 
                 }
             else
@@ -126,20 +127,13 @@ class RegisterCourseViewModel : BaseViewModel(){
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { result ->
                 if(result == 0){
-                    buttonBackGrond.value = R.drawable.custom_white_button//요청을 하지 않은 경우
-                    buttonText.value = "신청"
-                    buttonClickState.value = true
+                    initBeforeRegisteredCourseState(false)
                 }else{
-
-                    buttonBackGrond.value = R.drawable.checked//요청을 이미 한 코스
-                    buttonText.value = ""
-                    buttonClickState.value = false
+                    initRegisteredCourseState(false)
                 }
 
             }
     }//이미 신청을 한 과목인지 확인
-
-
     private fun startRequestRegisterCourse(){
         loadingVisibility.value = View.VISIBLE
         buttonVisibility.value = View.GONE
@@ -149,23 +143,25 @@ class RegisterCourseViewModel : BaseViewModel(){
         buttonVisibility.value = View.VISIBLE
     }
 
-    private fun sucessRequestRegisterCourse(){
+    private fun initRegisteredCourseState(requestState : Boolean){
         buttonBackGrond.value = R.drawable.checked
         buttonText.value = ""
         buttonClickState.value = false
-        insertSuccessCourse()
-    }
-    private fun sucessRequestDeleteCourse(){
+        if(requestState)
+            insertSuccessCourse()
+    }//requsetState : 요청해서 코스 상태를 갱신한 경우 디비에 넣어주자
+    private fun initBeforeRegisteredCourseState(requestState : Boolean){
         buttonBackGrond.value = R.drawable.custom_white_button
         buttonText.value = "신청"
         buttonClickState.value = true
-        deleteSuccessCourse()
-    }
+        if(requestState)
+            deleteSuccessCourse()
+    }//requsetState : 요청해서 코스 상태를 갱신한 경우 디비에 넣어주자
     private fun errorRequestRegisterCourse(){
         buttonBackGrond.value = R.drawable.custom_white_button
         buttonText.value = "신청"
 
-    }//서버 문제로 다시 신청해야하는 경우
+    }//서버 문제로 다시 신청해야하는 경우 ... 이 함수가 필요할 때 initBeforeRegisteredCourseState와 합쳐주자.
     private fun failRequestCourse(){
         buttonBackGrond.value = R.drawable.custom_red_button
         buttonText.value = "실패"
