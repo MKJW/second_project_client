@@ -31,6 +31,7 @@ class RegisterCourseViewModel : BaseViewModel(){
     val buttonClickState:MutableLiveData<Boolean> = MutableLiveData()//true : 서버로 insert 요청, false: delete요청
     private lateinit var subscription: Disposable
 
+
     override fun onCleared() {
         super.onCleared()
         subscription.dispose()
@@ -73,7 +74,7 @@ class RegisterCourseViewModel : BaseViewModel(){
     fun bind(course: Course){
         courseName.value = course.course_name
         courseId = course.course_id
-        checkRequestCourse(course.course_id)
+        checkRequestCourse(courseId)
         buttonVisibility.value = View.VISIBLE
         loadingVisibility.value = View.GONE
 
@@ -107,18 +108,19 @@ class RegisterCourseViewModel : BaseViewModel(){
 
         }.concatMap {
                 dbCourse ->
-            if(dbCourse == 0)
-                registerCourseAPI.getCourse(Student_Course(course_id, TEMP_STUDENT_ID) ).concatMap {
-                        apiCourse ->Observable.just(1)
-                    /*if(apiCourse == "True"){
+            if(dbCourse == 0) {
+                registerCourseAPI.checkCourse(Student_Course(course_id, TEMP_STUDENT_ID)).concatMap {
+                        apiCourse ->
+                    if (apiCourse) {
                         insertSuccessCourse()
                         Observable.just(1)
-                    }else{
+                    } else {
                         Observable.just(0)
                     }//반환 받는 타입을 확인해보자...
-                    */
+
 
                 }
+            }
             else
                 Observable.just(dbCourse)
 

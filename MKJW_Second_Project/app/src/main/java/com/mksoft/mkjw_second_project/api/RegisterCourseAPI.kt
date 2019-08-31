@@ -22,9 +22,9 @@ interface RegisterCourseAPI{
     ): Observable<String>
 
     @POST("/courses/check")
-    fun getCourse(
+    fun checkCourse(
         @Body studentCourse: Student_Course
-    ): Observable<String>
+    ): Observable<Boolean>
 
     @POST("/courses/unregister")
     fun postUnregisterCourse(
