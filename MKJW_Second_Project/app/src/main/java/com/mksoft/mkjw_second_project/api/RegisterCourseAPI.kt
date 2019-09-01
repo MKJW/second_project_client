@@ -15,21 +15,21 @@ interface RegisterCourseAPI{
 
     @POST("/courses/register")
     fun postRegisterCourse(
-        @Header("course_id") course_id: String,
-        @Header("student_id") student_id: String
+        @Query("course_id") course_id: String,
+        @Query("student_id") student_id: String
     ): Observable<String>
 
-    @POST("/courses/check")
+    @GET("/courses/check")
     fun checkCourse(
-        @Header("course_id") course_id: String,
-        @Header("student_id") student_id: String
+        @Query("course_id") course_id: String,
+        @Query("student_id") student_id: String
 
         ): Observable<Boolean>
 
     @POST("/courses/unregister")
     fun postUnregisterCourse(
-        @Header("course_id") course_id: String,
-        @Header("student_id") student_id: String
-    ): Observable<String>
+        @Query("course_id") course_id: String,
+        @Query("student_id") student_id: String
+    ): Observable<Boolean>
 
 }

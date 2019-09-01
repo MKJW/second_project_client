@@ -48,8 +48,8 @@ class RegisterCourseViewModel : BaseViewModel(){
         subscription =registerCourseAPI.postUnregisterCourse(/*TEMP_SCHOOL_ID,*/ courseId, TEMP_STUDENT_ID)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { startRequestRegisterCourse() }
-            .doOnTerminate { finishrequestRegisterCourse() }
+            .doOnSubscribe { startRequestCourse() }
+            .doOnTerminate { finishrequestCourse() }
             .subscribe(
                 {result -> initBeforeRegisteredCourseState(true)},//result가 Observable이어야 한다.
                 {failRequestCourse()}
@@ -60,8 +60,8 @@ class RegisterCourseViewModel : BaseViewModel(){
         subscription =registerCourseAPI.postRegisterCourse(/*TEMP_SCHOOL_ID,*/ courseId, TEMP_STUDENT_ID)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { startRequestRegisterCourse() }
-            .doOnTerminate { finishrequestRegisterCourse() }
+            .doOnSubscribe { startRequestCourse() }
+            .doOnTerminate { finishrequestCourse() }
             .subscribe(
                 {result -> initRegisteredCourseState(true)},//result가 Observable이어야 한다.
                 {failRequestCourse()}//일단은 겹치는 수강으로 실패한 경우
@@ -73,8 +73,7 @@ class RegisterCourseViewModel : BaseViewModel(){
         courseName.value = course.course_name
         courseId = course.course_id
         checkRequestCourse(courseId)
-        buttonVisibility.value = View.VISIBLE
-        loadingVisibility.value = View.GONE
+
 
     }
 
@@ -106,9 +105,8 @@ class RegisterCourseViewModel : BaseViewModel(){
 
         }.concatMap {
                 dbCourse ->
-            if(dbCourse == 2) {
-                registerCourseAPI.checkCourse(course_id, TEMP_STUDENT_ID).concatMap {
-                        apiCourse ->
+            if(dbCourse == 0) {
+                registerCourseAPI.checkCourse(course_id, TEMP_STUDENT_ID).concatMap { apiCourse ->
                     if (apiCourse) {
                         insertSuccessCourse()
                         Observable.just(1)
@@ -125,6 +123,8 @@ class RegisterCourseViewModel : BaseViewModel(){
         }
             .subscribeOn(Schedulers.io())//이걸 해줘야 UI lock이 풀린다.
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { startRequestCourse() }
+            .doOnTerminate { finishrequestCourse() }
             .subscribe { result ->
                 if(result == 0){
                     initBeforeRegisteredCourseState(false)
@@ -134,11 +134,11 @@ class RegisterCourseViewModel : BaseViewModel(){
 
             }
     }//이미 신청을 한 과목인지 확인
-    private fun startRequestRegisterCourse(){
+    private fun startRequestCourse(){
         loadingVisibility.value = View.VISIBLE
         buttonVisibility.value = View.GONE
     }
-    private fun finishrequestRegisterCourse(){
+    private fun finishrequestCourse(){
         loadingVisibility.value = View.GONE
         buttonVisibility.value = View.VISIBLE
     }
