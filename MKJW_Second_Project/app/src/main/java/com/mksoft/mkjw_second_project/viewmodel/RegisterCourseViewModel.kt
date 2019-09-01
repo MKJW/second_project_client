@@ -29,6 +29,7 @@ class RegisterCourseViewModel : BaseViewModel(){
     val buttonVisibility:MutableLiveData<Int> = MutableLiveData()
     val buttonBackGrond:MutableLiveData<Int> = MutableLiveData()
     val buttonClickState:MutableLiveData<Boolean> = MutableLiveData()//true : 서버로 insert 요청, false: delete요청
+    val buttonWidth:MutableLiveData<Int> = MutableLiveData()
     private lateinit var subscription: Disposable
 
 
@@ -147,6 +148,7 @@ class RegisterCourseViewModel : BaseViewModel(){
         buttonBackGrond.value = R.drawable.checked
         buttonText.value = ""
         buttonClickState.value = false
+        buttonWidth.value = 40
         if(requestState)
             insertSuccessCourse()
     }//requsetState : 요청해서 코스 상태를 갱신한 경우 디비에 넣어주자
@@ -154,17 +156,19 @@ class RegisterCourseViewModel : BaseViewModel(){
         buttonBackGrond.value = R.drawable.custom_white_button
         buttonText.value = "신청"
         buttonClickState.value = true
+        buttonWidth.value = 80
         if(requestState)
             deleteSuccessCourse()
     }//requsetState : 요청해서 코스 상태를 갱신한 경우 디비에 넣어주자
     private fun errorRequestRegisterCourse(){
         buttonBackGrond.value = R.drawable.custom_white_button
         buttonText.value = "신청"
-
+        buttonWidth.value = 80
     }//서버 문제로 다시 신청해야하는 경우 ... 이 함수가 필요할 때 initBeforeRegisteredCourseState와 합쳐주자.
     private fun failRequestCourse(){
         buttonBackGrond.value = R.drawable.custom_red_button
         buttonText.value = "실패"
+        buttonWidth.value = 80
     }//중국어 일본어 처럼 택1을 해야하는 경우 중복으로 신청하여 들을 수 없는 경우
 
 

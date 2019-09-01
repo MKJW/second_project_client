@@ -1,6 +1,7 @@
 package com.mksoft.mkjw_second_project.utils
 
 import android.annotation.TargetApi
+import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.view.View
@@ -41,6 +42,15 @@ fun setMutableBackground(view: View, background: MutableLiveData<Int>?) {
     val parentActivity:AppCompatActivity? = view.getParentActivity()
     if(parentActivity != null && background != null) {
         background.observe(parentActivity, Observer { value -> view.setBackgroundResource(value?: R.drawable.null_background)})//
+    }
+}
+@BindingAdapter("mutableWidth")
+fun setMutableWidth(view: View, width: MutableLiveData<Int>?){
+    val parentActivity:AppCompatActivity? = view.getParentActivity()
+    if(parentActivity != null && width!=null){
+        width.observe(parentActivity, Observer{ value -> view.layoutParams.width =
+            ((value?:0)* Resources.getSystem().displayMetrics.density).toInt()//dp를 인수로 받고 px로 변환
+        })
     }
 }
 @BindingAdapter("mutableButtonLockState")
