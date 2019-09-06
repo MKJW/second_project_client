@@ -2,7 +2,7 @@ package com.mksoft.mkjw_second_project.viewmodel
 
 import android.view.View
 import androidx.lifecycle.MutableLiveData
-import com.mksoft.mkjw_second_project.api.RegisterCourseAPI
+import com.mksoft.mkjw_second_project.api.CourseAPI
 import com.mksoft.mkjw_second_project.model.Course.Course
 import com.mksoft.mkjw_second_project.model.DB.AppDataBase
 import com.mksoft.mkjw_second_project.R
@@ -16,16 +16,16 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class RegisterCourseListViewModel: BaseViewModel(){
+class RegisterCourseListViewModel : BaseViewModel() {
 
     @Inject
-    lateinit var registerCourseAPI: RegisterCourseAPI
+    lateinit var registerCourseAPI: CourseAPI
     @Inject
     lateinit var appDataBase: AppDataBase
 
-    val courseListAdapter:CourseListAdapter = CourseListAdapter()
-    val loadingVisibility:MutableLiveData<Int> = MutableLiveData()
-    val errorMessage:MutableLiveData<Int> = MutableLiveData()
+    val courseListAdapter: CourseListAdapter = CourseListAdapter()
+    val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
+    val errorMessage: MutableLiveData<Int> = MutableLiveData()
     val errorClickLister = View.OnClickListener { loadCourses() }
     //실패했을 때 클릭하면 다시 불러오기
 
@@ -41,41 +41,43 @@ class RegisterCourseListViewModel: BaseViewModel(){
         subscription.dispose()
     }//뷰모델이 죽을 때 할당된 변수들 삭제
 
-    private fun loadCourses(){
-        subscription =Observable.fromCallable {
-            appDataBase.courseDao().getAllCourses
-        }.concatMap {
-            dbCourseList ->
-             if(dbCourseList.isEmpty())
-                 registerCourseAPI.getCourses(TEMP_SCHOOL_ID, TEMP_GRADE).concatMap {
-                    apiCourseList -> appDataBase.courseDao().insertCourse(*apiCourseList.toTypedArray())//받은 리스트에서 널을 처리해주기 위해서
+    private fun loadCourses() {
+        subscription = Observable.fromCallable {
+            appDataBase.courseDao().getCourses()
+        }.concatMap { dbCourseList ->
+            if (dbCourseList.isEmpty())
+                registerCourseAPI.getCourses(TEMP_SCHOOL_ID, TEMP_GRADE).concatMap { apiCourseList ->
+                    appDataBase.courseDao().insertCourse(*apiCourseList.toTypedArray())//받은 리스트에서 널을 처리해주기 위해서
                     Observable.just(apiCourseList)
-                 }
-             else
-                 Observable.just(dbCourseList)
+                }
+            else
+                Observable.just(dbCourseList)
 
         }.subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .doOnSubscribe { startLoadCourse() }
-        .doOnTerminate { finishLoadCourse() }
-        .subscribe(
-            {result ->successLoadCourse(result)},
-            {failLoadCourse()}
-        )
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { startLoadCourse() }
+            .doOnTerminate { finishLoadCourse() }
+            .subscribe(
+                { result -> successLoadCourse(result) },
+                { failLoadCourse() }
+            )
     }
 
 
-    private fun startLoadCourse(){
+    private fun startLoadCourse() {
         loadingVisibility.value = View.VISIBLE
         errorMessage.value = null
     }
-    private fun finishLoadCourse(){
+
+    private fun finishLoadCourse() {
         loadingVisibility.value = View.GONE
     }
-    private fun successLoadCourse(courseList:List<Course>){
+
+    private fun successLoadCourse(courseList: List<Course>) {
         courseListAdapter.updateCourseList(courseList)
     }
-    private fun failLoadCourse(){
+
+    private fun failLoadCourse() {
         errorMessage.value = R.string.course_load_error
     }
 

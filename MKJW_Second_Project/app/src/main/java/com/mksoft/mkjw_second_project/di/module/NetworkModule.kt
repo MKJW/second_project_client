@@ -1,6 +1,10 @@
 package com.mksoft.mkjw_second_project.di.module
 
-import com.mksoft.mkjw_second_project.api.RegisterCourseAPI
+import android.graphics.Paint
+import com.mksoft.mkjw_second_project.api.CourseAPI
+import com.mksoft.mkjw_second_project.api.JoinAPI
+import com.mksoft.mkjw_second_project.api.LoginAPI
+import com.mksoft.mkjw_second_project.api.SectionAPI
 import com.mksoft.mkjw_second_project.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -18,9 +22,30 @@ class NetworkModule{
 
     @Provides
     @Singleton
-    internal  fun provideRegisterCourseAPI(retrofit: Retrofit): RegisterCourseAPI{
-        return retrofit.create(RegisterCourseAPI::class.java)
+    internal  fun provideCourseAPI(retrofit: Retrofit): CourseAPI{
+        return retrofit.create(CourseAPI::class.java)
     }
+
+    @Provides
+    @Singleton
+    internal  fun provideSectionAPI(retrofit: Retrofit): SectionAPI {
+        return retrofit.create(SectionAPI::class.java)
+    }
+    @Provides
+    @Singleton
+    internal  fun provideJoinAPI(retrofit: Retrofit): JoinAPI {
+        return retrofit.create(JoinAPI::class.java)
+    }
+    @Provides
+    @Singleton
+    internal  fun provideLoginAPI(retrofit: Retrofit): LoginAPI {
+        return retrofit.create(LoginAPI::class.java)
+    }
+
+
+
+
+
     //필요한 API여기에 추가
     @Provides
     @Singleton

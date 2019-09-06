@@ -10,14 +10,14 @@ import androidx.room.Query
 interface Studnt_CourseDao {
     //코스 관련 질의
 
-    @get:Query("SELECT * FROM Student_Course")
-    val getAllStudent_Course: List<Student_Course>
+    @Query("SELECT * FROM Student_Course")
+    fun getAllStudent_Course(): List<Student_Course>
 
     @Query("SELECT COUNT(*) FROM Student_Course WHERE course_id=:course_id")
     fun getStudent_Course (course_id:String):Int
 
     @Insert(onConflict = REPLACE)
-    fun insertAll(vararg studentCourse: Student_Course)
+    fun insertStudent_Course(vararg studentCourse: Student_Course)
 
     @Delete
     fun delete(student_course:Student_Course)

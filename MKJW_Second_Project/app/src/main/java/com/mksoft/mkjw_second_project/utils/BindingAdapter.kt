@@ -52,7 +52,24 @@ fun setMutableWidth(view: View, width: MutableLiveData<Int>?){
             ((value?:0)* Resources.getSystem().displayMetrics.density).toInt()//dp를 인수로 받고 px로 변환
         })
     }
-}
+}//간격 설정
+@BindingAdapter("mutableHeight")
+fun setMutableHeight(view: View, height: MutableLiveData<Int>?){
+    val parentActivity:AppCompatActivity? = view.getParentActivity()
+    if(parentActivity != null && height!=null){
+        height.observe(parentActivity, Observer{ value -> view.layoutParams.height =
+            ((value?:0)* Resources.getSystem().displayMetrics.density).toInt()//dp를 인수로 받고 px로 변환
+        })
+    }
+}//높이 설정
+@BindingAdapter("mutableTextColor")
+fun setMutableTextColor(view: TextView, color: MutableLiveData<Int>?){
+    val parentActivity:AppCompatActivity? = view.getParentActivity()
+    if(parentActivity != null && color!=null){
+        color.observe(parentActivity, Observer{ value -> view.setTextColor(value?:R.color.nullColor)
+        })
+    }
+}//높이 설정
 @BindingAdapter("mutableButtonLockState")
 fun setMutableButtonLockState(view: Button, state: MutableLiveData<Boolean>?) {
     val parentActivity:AppCompatActivity? = view.getParentActivity()

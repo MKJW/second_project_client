@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name = "viewModel"
+                type = "com.mksoft.mkjw_second_project.viewmodel.JoinViewModel"
+        />
+    </data>
+    <RelativeLayout
+            android:id="@+id/join_page_activity_background_RelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+        <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:layout_alignParentTop="true"
+                android:id="@+id/join_page_activity_Toolbar"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            <TextView
+                    android:id="@+id/join_page_activity_toolbarTitle_TextView"
+                    android:text="회원가입"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:textStyle="bold"
+                    android:layout_gravity="center" />
+
+        </androidx.appcompat.widget.Toolbar>
+        <ScrollView
+                android:layout_below="@+id/join_page_activity_Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                <TextView
+                        android:id="@+id/join_page_activity_headerID_TextView"
+                        android:text="ID"
+                        android:textStyle="bold"
+                        android:textSize="35dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"/>
+                <EditText
+                        android:id="@+id/join_page_activity_inputID_EditText"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:layout_below="@+id/join_page_activity_headerID_TextView"
+                        android:hint="ID"
+                        android:inputType="textPersonName"
+                />
+                <TextView
+                        android:layout_below="@+id/join_page_activity_inputID_EditText"
+                        android:id="@+id/join_page_activity_stateID_TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:mutableVisibility="@{viewModel.getInputIDState}"
+                        app:mutableTextColor="@{viewMode.getInputIDStateColor}"/>
+
+
+                <TextView
+                        android:id="@+id/join_page_activity_headerPW_TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PW"
+                        android:textStyle="bold"
+                        android:textSize="35dp"
+                        android:layout_below="@+id/join_page_activity_stateID_TextView"
+                        android:layout_marginTop="15dp"
+                />
+                <EditText
+                        android:id="@+id/join_page_activity_inputPW_EditText"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:layout_below="@+id/join_page_activity_headerPW_TextView"
+
+                        android:inputType="textPassword"
+                        android:hint="PW"
+                />
+                <TextView
+                        android:layout_below="@+id/join_page_activity_inputPW_EditText"
+                        android:id="@+id/join_page_activity_statePW_TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:mutableVisibility="@{viewModel.getInputPWState}"
+                        app:mutableTextColor="@{viewMode.getInputPWStateColor}"/>
+
+                <TextView
+                        android:layout_below="@+id/join_page_activity_statePW_TextView"
+                        android:id="@+id/join_page_activity_headerEmail_TextView"
+                        android:text="Email"
+                        android:textStyle="bold"
+                        android:textSize="35dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"/>
+                <EditText
+                        android:id="@+id/join_page_activity_inputEmail_EditText"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:layout_below="@+id/join_page_activity_headerEmail_TextView"
+                        android:inputType="text"
+                        android:hint="Email"
+                />
+                <Button
+                        android:id="@+id/join_page_activity_join_Button"
+                        android:layout_marginTop="30dp"
+                        android:layout_below="@+id/join_page_activity_inputEmail_EditText"
+                        android:background="@drawable/custom_mint_button"
+                        android:layout_marginLeft="5dp"
+                        android:text="join"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"/>
+                <ProgressBar
+                        android:layout_marginTop="30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_below="@+id/join_page_activity_inputEmail_EditText"
+                />
+
+
+
+            </RelativeLayout>
+
+
+
+        </ScrollView>>
+
+    </RelativeLayout>
+
+</layout>

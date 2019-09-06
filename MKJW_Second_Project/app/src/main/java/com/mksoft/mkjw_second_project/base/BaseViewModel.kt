@@ -7,8 +7,7 @@ import com.mksoft.mkjw_second_project.di.component.AppComponent
 import com.mksoft.mkjw_second_project.di.component.DaggerAppComponent
 import com.mksoft.mkjw_second_project.di.module.DataBaseModule
 import com.mksoft.mkjw_second_project.di.module.NetworkModule
-import com.mksoft.mkjw_second_project.viewmodel.RegisterCourseListViewModel
-import com.mksoft.mkjw_second_project.viewmodel.RegisterCourseViewModel
+import com.mksoft.mkjw_second_project.viewmodel.*
 
 abstract class BaseViewModel: ViewModel(){
     private val injector:AppComponent =
@@ -24,6 +23,9 @@ abstract class BaseViewModel: ViewModel(){
         when(this){
             is RegisterCourseListViewModel -> injector.inject(this)
             is RegisterCourseViewModel -> injector.inject(this)
+            is TimeTableViewModel -> injector.inject(this)
+            is LoginViewModel -> injector.inject(this)
+            is JoinViewModel -> injector.inject(this)
         }
     }
 }

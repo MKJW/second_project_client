@@ -7,9 +7,33 @@
 
     <RelativeLayout
             android:id="@+id/time_table_page_activity_background_RelativeLayout"
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
     >
+        <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:layout_alignParentTop="true"
+                android:id="@+id/time_table_page_activity_Toolbar"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            <TextView
+                    android:id="@+id/time_table_page_activity_toolbarTitle_TextView"
+                    android:text="시간표"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:textStyle="bold"
+                    android:layout_gravity="center" />
+
+        </androidx.appcompat.widget.Toolbar>
+        <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+
         <RelativeLayout
                 android:id="@+id/time_table_page_activity_timeTableLayout_RelativeLayout"
                 android:layout_width="wrap_content"
@@ -97,11 +121,153 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"/>
             <TextView
+                    android:text="1_1"
+                    android:layout_below="@+id/time_table_page_activity_mon_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_1_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_1_1_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+
+            <TextView
+                    android:text="1_2"
+                    android:layout_below="@+id/time_tablepage_activity_1_1_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_2_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_1_2_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="1_3"
+                    android:layout_below="@+id/time_tablepage_activity_1_2_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_3_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_1_3_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="1_4"
+                    android:layout_below="@+id/time_tablepage_activity_1_3_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_4_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_1_4_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="1_5"
+                    android:layout_below="@+id/time_tablepage_activity_1_4_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_5_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_1_5_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="1_6"
+                    android:layout_below="@+id/time_tablepage_activity_1_5_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_6_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_1_6_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="1_7"
+                    android:layout_below="@+id/time_tablepage_activity_1_6_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_7_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_1_7_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
                     android:text="화"
                     android:layout_toRightOf="@+id/time_table_page_activity_mon_TextView"
                     android:textSize="20dp"
                     android:gravity="center"
                     android:id="@+id/time_table_page_activity_tue_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="2_1"
+                    android:layout_below="@+id/time_table_page_activity_tue_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_1_1_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_2_1_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+
+            <TextView
+                    android:text="2_2"
+                    android:layout_below="@+id/time_tablepage_activity_2_1_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_1_2_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_2_2_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="2_3"
+                    android:layout_below="@+id/time_tablepage_activity_2_2_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_1_3_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_2_3_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="2_4"
+                    android:layout_below="@+id/time_tablepage_activity_2_3_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_1_4_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_2_4_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="2_5"
+                    android:layout_below="@+id/time_tablepage_activity_2_4_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_1_5_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_2_5_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="2_6"
+                    android:layout_below="@+id/time_tablepage_activity_2_5_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_1_6_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_2_6_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="2_7"
+                    android:layout_below="@+id/time_tablepage_activity_2_6_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_1_7_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_2_7_TextView"
                     android:textStyle="bold"
                     android:layout_width="60dp"
                     android:layout_height="60dp"/>
@@ -115,6 +281,77 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"/>
             <TextView
+                    android:text="3_1"
+                    android:layout_below="@+id/time_table_page_activity_wed_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_2_1_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_3_1_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+
+            <TextView
+                    android:text="3_2"
+                    android:layout_below="@+id/time_tablepage_activity_3_1_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_2_2_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_3_2_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="3_3"
+                    android:layout_below="@+id/time_tablepage_activity_3_2_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_2_3_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_3_3_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="3_4"
+                    android:layout_below="@+id/time_tablepage_activity_3_3_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_2_4_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_3_4_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="3_5"
+                    android:layout_below="@+id/time_tablepage_activity_3_4_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_2_5_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_3_5_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="3_6"
+                    android:layout_below="@+id/time_tablepage_activity_3_5_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_2_6_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_3_6_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="3_7"
+                    android:layout_below="@+id/time_tablepage_activity_3_6_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_2_7_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_3_7_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
                     android:text="목"
                     android:layout_toRightOf="@+id/time_table_page_activity_wed_TextView"
                     android:textSize="20dp"
@@ -124,11 +361,154 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"/>
             <TextView
+                    android:text="4_1"
+                    android:layout_below="@+id/time_table_page_activity_thu_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_3_1_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_4_1_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+
+            <TextView
+                    android:text="4_2"
+                    android:layout_below="@+id/time_tablepage_activity_4_1_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_3_2_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_4_2_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="4_3"
+                    android:layout_below="@+id/time_tablepage_activity_4_2_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_3_3_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_4_3_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="4_4"
+                    android:layout_below="@+id/time_tablepage_activity_4_3_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_3_4_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_4_4_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="4_5"
+                    android:layout_below="@+id/time_tablepage_activity_4_4_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_3_5_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_4_5_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="4_6"
+                    android:layout_below="@+id/time_tablepage_activity_4_5_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_3_6_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_4_6_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="4_7"
+                    android:layout_below="@+id/time_tablepage_activity_4_6_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_3_7_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_4_7_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+
+            <TextView
                     android:text="금"
                     android:layout_toRightOf="@+id/time_table_page_activity_thu_TextView"
                     android:textSize="20dp"
                     android:gravity="center"
                     android:id="@+id/time_table_page_activity_fri_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="5_1"
+                    android:layout_below="@+id/time_table_page_activity_fri_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_4_1_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_5_1_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+
+            <TextView
+                    android:text="5_2"
+                    android:layout_below="@+id/time_tablepage_activity_5_1_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_4_2_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_5_2_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="5_3"
+                    android:layout_below="@+id/time_tablepage_activity_5_2_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_4_3_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_5_3_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="5_4"
+                    android:layout_below="@+id/time_tablepage_activity_5_3_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_4_4_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_5_4_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="5_5"
+                    android:layout_below="@+id/time_tablepage_activity_5_4_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_4_5_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_5_5_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="5_6"
+                    android:layout_below="@+id/time_tablepage_activity_5_5_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_4_6_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_5_6_TextView"
+                    android:textStyle="bold"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+            <TextView
+                    android:text="5_7"
+                    android:layout_below="@+id/time_tablepage_activity_5_6_TextView"
+                    android:layout_toRightOf="@+id/time_tablepage_activity_4_7_TextView"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/time_tablepage_activity_5_7_TextView"
                     android:textStyle="bold"
                     android:layout_width="60dp"
                     android:layout_height="60dp"/>

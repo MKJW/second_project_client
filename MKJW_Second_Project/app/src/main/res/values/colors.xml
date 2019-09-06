@@ -3,7 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="sucessColor">#3de938</color>
-    <color name="failColor">#e93535</color>
+    <color name="sucessColor">#7FFF83</color>
+    <color name="failColor">#FC4646</color>
+    <color name="nullColor">#000000</color>
 
 </resources>

@@ -5,8 +5,8 @@ import com.mksoft.mkjw_second_project.model.Course.Student_Course
 import io.reactivex.Observable
 import retrofit2.http.*
 
-interface RegisterCourseAPI{
-    //등록과 코스 관련 api
+interface CourseAPI{
+    //코스 관련 api
     @GET("/courses/{school_id}/{grade}")
     fun getCourses(
         @Path("school_id") school_id:String,

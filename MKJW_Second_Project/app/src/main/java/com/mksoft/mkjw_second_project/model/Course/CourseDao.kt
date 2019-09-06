@@ -9,9 +9,12 @@ import androidx.room.Query
 interface CourseDao {
     //코스 관련 질의
 
-    @get:Query("SELECT * FROM course")
-    val getAllCourses: List<Course>
+    @Query("SELECT * FROM course")
+    fun getCourses(): List<Course>
 
     @Insert(onConflict = REPLACE)
     fun insertCourse(vararg course:Course)
+
+    @Query("SELECT * FROM course WHERE course_id LIKE :courseID")
+    fun getCourse(courseID: String): Course
 }

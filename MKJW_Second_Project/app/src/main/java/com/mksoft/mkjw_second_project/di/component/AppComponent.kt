@@ -2,18 +2,21 @@ package com.mksoft.mkjw_second_project.di.component
 
 import com.mksoft.mkjw_second_project.di.module.DataBaseModule
 import com.mksoft.mkjw_second_project.di.module.NetworkModule
-import com.mksoft.mkjw_second_project.viewmodel.RegisterCourseListViewModel
-import com.mksoft.mkjw_second_project.viewmodel.RegisterCourseViewModel
+import com.mksoft.mkjw_second_project.viewmodel.*
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [NetworkModule::class,
-                        DataBaseModule::class])
+@Component(
+    modules = [NetworkModule::class,
+        DataBaseModule::class]
+)
 interface AppComponent {
     fun inject(registerCourseViewModel: RegisterCourseViewModel)
     fun inject(registerCourseListViewModel: RegisterCourseListViewModel)
-
+    fun inject(timeTableViewModel: TimeTableViewModel)
+    fun inject(joinViewModel: JoinViewModel)
+    fun inject(loginViewModel: LoginViewModel)
     @Component.Builder
     interface Builder {
         fun build(): AppComponent

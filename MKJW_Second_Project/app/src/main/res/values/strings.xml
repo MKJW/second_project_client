@@ -7,5 +7,13 @@
     <string name="request_course_button_fail_name">실패</string>
     <string name="request_course_button_success_name"></string>
 
+    <string name="proper_id_state">사용 가능한 아이디 입니다.</string>
+    <string name="proper_pw_state">안전한 비밀번호 입니다.</string>
+    <string name="not_proper_id_state">5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.</string>
+    <string name="not_proper_pw_state">8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.</string>
+    <string name="overlap_id_state">이미 사용중이거나 탈퇴한 아이디입니다.</string>
+
+
+
 
 </resources>
