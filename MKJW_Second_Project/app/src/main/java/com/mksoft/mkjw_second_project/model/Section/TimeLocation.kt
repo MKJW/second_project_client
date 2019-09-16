@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(primaryKeys = ["day", "start_time", "end_time"])
-data class Time_Location(
+data class TimeLocation(
     val day:String,
     val start_time:String,
     val end_time:String,

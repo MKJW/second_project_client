@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.view.View
 import android.widget.Button
+import android.widget.TableLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
@@ -14,6 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.mksoft.mkjw_second_project.R
+import java.util.*
 
 @BindingAdapter("adapter")
 fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
@@ -77,3 +79,4 @@ fun setMutableButtonLockState(view: Button, state: MutableLiveData<Boolean>?) {
         state.observe(parentActivity, Observer { value -> if(!value)view.setOnClickListener(null)})//버튼이 눌러지지 않는다.
     }
 }
+

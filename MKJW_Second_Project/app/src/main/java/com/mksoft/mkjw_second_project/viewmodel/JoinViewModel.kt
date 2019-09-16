@@ -17,14 +17,13 @@ class JoinViewModel :BaseViewModel(){
     @Inject
     lateinit var joinAPI: JoinAPI
 
-    val inputIDState : MutableLiveData<Int> = MutableLiveData()
-    val inputPWState : MutableLiveData<Int> = MutableLiveData()
+    private val inputIDState : MutableLiveData<Int> = MutableLiveData()
+    private val inputPWState : MutableLiveData<Int> = MutableLiveData()
 
-    val inputIDStateColor : MutableLiveData<Int> = MutableLiveData()
-    val inputPWStateColor : MutableLiveData<Int> = MutableLiveData()
+    private val inputIDStateColor : MutableLiveData<Int> = MutableLiveData()
+    private val inputPWStateColor : MutableLiveData<Int> = MutableLiveData()
 
     private lateinit var subscription: Disposable
-
 
     override fun onCleared() {
         super.onCleared()

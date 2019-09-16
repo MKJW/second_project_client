@@ -2,19 +2,14 @@ package com.mksoft.mkjw_second_project.ui_view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding3.widget.textChanges
 import com.mksoft.mkjw_second_project.R
 import com.mksoft.mkjw_second_project.databinding.JoinPageActivityBinding
-import com.mksoft.mkjw_second_project.databinding.RegisterCoursesPageActivityBinding
 import com.mksoft.mkjw_second_project.di.ViewModelFactory
 import com.mksoft.mkjw_second_project.viewmodel.JoinViewModel
-import com.mksoft.mkjw_second_project.viewmodel.RegisterCourseListViewModel
 import kotlinx.android.synthetic.main.join_page_activity.*
 
 class JoinPageActivity : AppCompatActivity(){
@@ -31,23 +26,25 @@ class JoinPageActivity : AppCompatActivity(){
         changeInputID()
         changeInputPW()
     }
+    @SuppressLint("CheckResult")
     private fun changeInputID(){
         join_page_activity_inputID_EditText
             .textChanges()
             .subscribe{
                 val inputID = join_page_activity_inputID_EditText.text.toString()
-                val IDstate = checkProperID(inputID)
-                viewModel.checkIDState(IDstate, inputID)
+                val IDState = checkProperID(inputID)
+                viewModel.checkIDState(IDState, inputID)
             }
     }
     //여기페이지에서 검사를 해주고 그에대한 바인딩은 viewModel에서 하도록 하자
+    @SuppressLint("CheckResult")
     private fun changeInputPW(){
         join_page_activity_inputPW_EditText
             .textChanges()
             .subscribe{
                 val inputPW = join_page_activity_inputPW_EditText.text.toString()
-                val PWstate = checkProperPW(inputPW)
-                viewModel.checkPWState(PWstate)
+                val PWState = checkProperPW(inputPW)
+                viewModel.checkPWState(PWState)
             }
     }
 

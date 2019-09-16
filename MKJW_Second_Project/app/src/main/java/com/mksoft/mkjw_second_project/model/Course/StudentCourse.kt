@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(primaryKeys = [/*"school_id",*/ "course_id", "student_id"])
-data class Student_Course(
+data class StudentCourse(
     //val school_id: String,
     val course_id: String,
     val student_id: String

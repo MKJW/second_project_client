@@ -7,7 +7,7 @@ import com.mksoft.mkjw_second_project.api.CourseAPI
 import com.mksoft.mkjw_second_project.model.Course.Course
 import com.mksoft.mkjw_second_project.model.DB.AppDataBase
 import com.mksoft.mkjw_second_project.base.BaseViewModel
-import com.mksoft.mkjw_second_project.model.Course.Student_Course
+import com.mksoft.mkjw_second_project.model.Course.StudentCourse
 import com.mksoft.mkjw_second_project.utils.TEMP_STUDENT_ID
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -26,7 +26,7 @@ class RegisterCourseViewModel : BaseViewModel() {
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val buttonVisibility: MutableLiveData<Int> = MutableLiveData()
     val buttonBackGrond: MutableLiveData<Int> = MutableLiveData()
-    val buttonClickState: MutableLiveData<Boolean> = MutableLiveData()//true : 서버로 insert 요청, false: delete요청
+    private val buttonClickState: MutableLiveData<Boolean> = MutableLiveData()//true : 서버로 insert 요청, false: delete요청
     val buttonWidth: MutableLiveData<Int> = MutableLiveData()
     private lateinit var subscription: Disposable
 
@@ -44,7 +44,7 @@ class RegisterCourseViewModel : BaseViewModel() {
         }
     }
 
-    fun requestDeleteCourse() {
+    private fun requestDeleteCourse() {
         subscription = registerCourseAPI.postUnregisterCourse(/*TEMP_SCHOOL_ID,*/ courseId, TEMP_STUDENT_ID)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -56,7 +56,7 @@ class RegisterCourseViewModel : BaseViewModel() {
             )
     }
 
-    fun requestRegisterCourse() {
+    private fun requestRegisterCourse() {
         //서버에 코스등록 요청
         subscription = registerCourseAPI.postRegisterCourse(/*TEMP_SCHOOL_ID,*/ courseId, TEMP_STUDENT_ID)
             .subscribeOn(Schedulers.io())
@@ -78,10 +78,10 @@ class RegisterCourseViewModel : BaseViewModel() {
 
     }
 
-    fun deleteSuccessCourse() {
+    private fun deleteSuccessCourse() {
         subscription = Observable.fromCallable {
-            appDataBase.student_courseDao().delete(
-                Student_Course(/*TEMP_SCHOOL_ID, */courseId, TEMP_STUDENT_ID)
+            appDataBase.studentCourseDao().delete(
+                StudentCourse(/*TEMP_SCHOOL_ID, */courseId, TEMP_STUDENT_ID)
             )
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -89,10 +89,10 @@ class RegisterCourseViewModel : BaseViewModel() {
             }
     }
 
-    fun insertSuccessCourse() {
+    private fun insertSuccessCourse() {
         subscription = Observable.fromCallable {
-            appDataBase.student_courseDao().insertStudent_Course(
-                Student_Course(/*TEMP_SCHOOL_ID, */courseId, TEMP_STUDENT_ID)
+            appDataBase.studentCourseDao().insertStudentCourse(
+                StudentCourse(/*TEMP_SCHOOL_ID, */courseId, TEMP_STUDENT_ID)
             )
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -100,9 +100,9 @@ class RegisterCourseViewModel : BaseViewModel() {
             }
     }//성공한 과목에 대하여 디비에 저장
 
-    fun checkRequestCourse(course_id: String) {
+    private fun checkRequestCourse(course_id: String) {
         subscription = Observable.fromCallable {
-            appDataBase.student_courseDao().getStudent_Course(course_id)
+            appDataBase.studentCourseDao().getStudentCourse(course_id)
             //수강신청을 하는 도중에 앱을 삭제하고 다시 돌아온 경우에는 db에도 신청한 데이터가 날라가기 때문에
             //db에 없으면 server쪽으로 (student_id, course_id)를 넘겨서 이미 신청했는지를 알아볼 필요가 있어보인다.
 
