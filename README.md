@@ -12,7 +12,7 @@
 ## 시스템
 > client : https://github.com/MKJW/second_project_client
  
-  server : https://github.com/MKJW/second_project_server
+>>  server : https://github.com/MKJW/second_project_server
 
 
 
