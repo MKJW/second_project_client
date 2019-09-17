@@ -53,6 +53,19 @@
 
  ViewModel에서 UI업데이트와 데이터 송수신을 처리해주고, UI업데이트를 위하여 DataBinding 이용.
 
+## 기능
+
+### Login page
+> 로그인 페이지
+
+### Logic
+- 로그인 버튼 클릭 → 서버로부터 응답(대기 시 프로그레스 바) → 1. 옳은 경우 토큰 2. 옳지 못한 경우 거부 3. 인증이 아직 완료되지 못했을 경우 이메일 변경 화면
+- 회원가입 버튼 클릭 → join page로 이동
+### join page
+
+### Register courses page
+
+### Timetable page 
 
 
 
