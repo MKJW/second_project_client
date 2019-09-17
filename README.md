@@ -12,7 +12,7 @@
 ## 시스템
 > client : https://github.com/MKJW/second_project_client
  
->>  server : https://github.com/MKJW/second_project_server
+>  server : https://github.com/MKJW/second_project_server
 
 
 
@@ -47,9 +47,17 @@
 
 
 ## App Architecture
-> 디자인 패턴은 MVVM으로 진행.
+ 디자인 패턴은 MVVM으로 진행.
 
  전반적인 구조는 BaseViewModel을 정의하고 BaseBiewModel 에서 각각 필요한 Module들을 초기화하여 주입시킴.
 
  ViewModel에서 UI업데이트와 데이터 송수신을 처리해주고, UI업데이트를 위하여 DataBinding 이용.
+
+
+
+
+
+
+
+
 
