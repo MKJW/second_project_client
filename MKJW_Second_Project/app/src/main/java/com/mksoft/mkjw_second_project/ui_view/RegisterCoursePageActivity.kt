@@ -24,7 +24,7 @@ class RegisterCoursePageActivity : AppCompatActivity() {
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.register_courses_page_activity)
+        //setContentView(R.layout.register_courses_page_activity)
         binding = DataBindingUtil.setContentView(this, R.layout.register_courses_page_activity)
         binding.registerCoursesPageActivityRegisterCourseRecyclerView.layoutManager = LinearLayoutManager(this,  LinearLayoutManager.VERTICAL, false)
         viewModel = ViewModelProviders.of(this, ViewModelFactory()).get(RegisterCourseListViewModel::class.java)

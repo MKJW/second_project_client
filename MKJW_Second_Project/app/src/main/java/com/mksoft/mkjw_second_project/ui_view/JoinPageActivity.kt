@@ -19,7 +19,7 @@ class JoinPageActivity : AppCompatActivity(){
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.join_page_activity)
+        //setContentView(R.layout.join_page_activity)
         binding = DataBindingUtil.setContentView(this, R.layout.join_page_activity)
         viewModel = ViewModelProviders.of(this, ViewModelFactory()).get(JoinViewModel::class.java)
         binding.viewModel = viewModel
