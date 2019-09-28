@@ -39,63 +39,26 @@
                 android:layout_height="match_parent">
             <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
                 <TextView
-                        android:id="@+id/join_page_activity_headerID_TextView"
-                        android:text="ID"
+                        android:id="@+id/join_page_activity_headerName_TextView"
+                        android:text="Name"
                         android:textStyle="bold"
                         android:textSize="35dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"/>
                 <EditText
-                        android:id="@+id/join_page_activity_inputID_EditText"
+                        android:id="@+id/join_page_activity_inputName_EditText"
                         android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:layout_below="@+id/join_page_activity_headerID_TextView"
-                        android:hint="ID"
+                        android:layout_below="@+id/join_page_activity_headerName_TextView"
+                        android:hint="Name"
                         android:inputType="textPersonName"
                 />
-                <TextView
-                        android:layout_below="@+id/join_page_activity_inputID_EditText"
-                        android:id="@+id/join_page_activity_stateID_TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:mutableVisibility="@{viewModel.getInputIDState}"
-                        app:mutableTextColor="@{viewMode.getInputIDStateColor}"/>
-
 
                 <TextView
-                        android:id="@+id/join_page_activity_headerPW_TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="PW"
-                        android:textStyle="bold"
-                        android:textSize="35dp"
-                        android:layout_below="@+id/join_page_activity_stateID_TextView"
-                        android:layout_marginTop="15dp"
-                />
-                <EditText
-                        android:id="@+id/join_page_activity_inputPW_EditText"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:layout_below="@+id/join_page_activity_headerPW_TextView"
-
-                        android:inputType="textPassword"
-                        android:hint="PW"
-                />
-                <TextView
-                        android:layout_below="@+id/join_page_activity_inputPW_EditText"
-                        android:id="@+id/join_page_activity_statePW_TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:mutableVisibility="@{viewModel.getInputPWState}"
-                        app:mutableTextColor="@{viewMode.getInputPWStateColor}"/>
-
-                <TextView
-                        android:layout_below="@+id/join_page_activity_statePW_TextView"
+                        android:layout_below="@+id/join_page_activity_inputName_EditText"
                         android:id="@+id/join_page_activity_headerEmail_TextView"
                         android:text="Email"
                         android:textStyle="bold"
@@ -110,13 +73,65 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:layout_below="@+id/join_page_activity_headerEmail_TextView"
-                        android:inputType="text"
                         android:hint="Email"
+                        android:inputType="textPersonName"
                 />
+                <TextView
+                        android:layout_below="@+id/join_page_activity_inputEmail_EditText"
+                        android:id="@+id/join_page_activity_stateEmail_TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        app:mutableText="@{viewModel.getInputIDState}"
+                        app:mutableTextColor="@{viewModel.getInputIDStateColor}"/>
+
+
+                <TextView
+                        android:id="@+id/join_page_activity_headerPW_TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PW"
+                        android:textStyle="bold"
+                        android:textSize="35dp"
+                        android:layout_below="@+id/join_page_activity_stateEmail_TextView"
+                        android:layout_marginTop="15dp"
+                />
+                <EditText
+                        android:id="@+id/join_page_activity_inputPW_EditText"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:layout_below="@+id/join_page_activity_headerPW_TextView"
+
+                        android:inputType="textPassword"
+                        android:hint="PW"
+                />
+                <EditText
+                        android:id="@+id/join_page_activity_inputPWCheck_EditText"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:layout_below="@+id/join_page_activity_inputPW_EditText"
+
+                        android:inputType="textPassword"
+                        android:hint="check PW"
+                />
+                <TextView
+                        android:layout_below="@+id/join_page_activity_inputPWCheck_EditText"
+                        android:id="@+id/join_page_activity_statePW_TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        app:mutableText="@{viewModel.getInputPWState}"
+                        app:mutableTextColor="@{viewModel.getInputPWStateColor}"/>
+
+
                 <Button
                         android:id="@+id/join_page_activity_join_Button"
                         android:layout_marginTop="30dp"
-                        android:layout_below="@+id/join_page_activity_inputEmail_EditText"
+                        android:layout_below="@+id/join_page_activity_statePW_TextView"
                         android:background="@drawable/custom_mint_button"
                         android:layout_marginLeft="5dp"
                         android:text="join"
@@ -128,7 +143,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:layout_below="@+id/join_page_activity_inputEmail_EditText"
+                        android:layout_below="@+id/join_page_activity_statePW_TextView"
                 />
 
 

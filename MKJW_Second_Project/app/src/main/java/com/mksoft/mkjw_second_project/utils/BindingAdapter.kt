@@ -8,12 +8,14 @@ import android.view.View
 import android.widget.Button
 import android.widget.TableLayout
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
+import com.mksoft.mkjw_second_project.App
 import com.mksoft.mkjw_second_project.R
 import java.util.*
 
@@ -39,6 +41,7 @@ fun setMutableText(view: TextView, text: MutableLiveData<String>?) {
         text.observe(parentActivity, Observer { value -> view.text  = value?:""})//""의 의미는 뭘까?---널이면
     }
 }
+
 @BindingAdapter("mutableBackground")
 fun setMutableBackground(view: View, background: MutableLiveData<Int>?) {
     val parentActivity:AppCompatActivity? = view.getParentActivity()
@@ -64,11 +67,12 @@ fun setMutableHeight(view: View, height: MutableLiveData<Int>?){
         })
     }
 }//높이 설정
+@RequiresApi(Build.VERSION_CODES.M)
 @BindingAdapter("mutableTextColor")
 fun setMutableTextColor(view: TextView, color: MutableLiveData<Int>?){
     val parentActivity:AppCompatActivity? = view.getParentActivity()
     if(parentActivity != null && color!=null){
-        color.observe(parentActivity, Observer{ value -> view.setTextColor(value?:R.color.nullColor)
+        color.observe(parentActivity, Observer{ value -> view.setTextColor(App.applicationContext().getColor(value?:R.color.nullColor))
         })
     }
 }//높이 설정

@@ -1,11 +1,14 @@
 package com.mksoft.mkjw_second_project.viewmodel
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.mksoft.mkjw_second_project.App
 import com.mksoft.mkjw_second_project.R
 import com.mksoft.mkjw_second_project.api.JoinAPI
 import com.mksoft.mkjw_second_project.api.LoginAPI
 import com.mksoft.mkjw_second_project.base.BaseViewModel
+import com.mksoft.mkjw_second_project.model.User.User
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -17,11 +20,16 @@ class JoinViewModel :BaseViewModel(){
     @Inject
     lateinit var joinAPI: JoinAPI
 
-    private val inputIDState : MutableLiveData<Int> = MutableLiveData()
-    private val inputPWState : MutableLiveData<Int> = MutableLiveData()
+    val inputIDState : MutableLiveData<String> = MutableLiveData()
+    val inputPWState : MutableLiveData<String> = MutableLiveData()
 
-    private val inputIDStateColor : MutableLiveData<Int> = MutableLiveData()
-    private val inputPWStateColor : MutableLiveData<Int> = MutableLiveData()
+    val inputIDStateColor : MutableLiveData<Int> = MutableLiveData()
+    val inputPWStateColor : MutableLiveData<Int> = MutableLiveData()
+
+    var idState : Boolean = false
+    var pwState : Boolean = false
+
+
 
     private lateinit var subscription: Disposable
 
@@ -30,7 +38,18 @@ class JoinViewModel :BaseViewModel(){
         subscription.dispose()
     }
 
+    fun sendUserForJoin(email:String, pw:String, name:String){
+        if(idState && pwState){
 
+            subscription = joinAPI.join(User(name.substring(1, name.length-1), name.substring(0,1), email, pw, pw))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({result-> Log.d("Login",result)},{})
+
+
+        }
+
+    }
 
     fun checkIDState(IDState : Boolean, inputID:String){
         if(IDState){
@@ -46,7 +65,7 @@ class JoinViewModel :BaseViewModel(){
         joinAPI.checkOverlapID(inputID)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { result->
+            .subscribe ({ result->
                 if(!result) {
                     //겹치는게 true
                     properIDState()
@@ -54,7 +73,8 @@ class JoinViewModel :BaseViewModel(){
                     overlapIDState()
                 }
 
-            }
+            },
+                {})
 
     }
     fun checkPWState(PWState : Boolean){
@@ -64,26 +84,43 @@ class JoinViewModel :BaseViewModel(){
             notProperPWState()
         }
     }
+    fun checkSamePW(PWState: Boolean){
+        if(PWState){
+            properPWState()
+        }else{
+            notProperCheckPWState()
+        }
+    }
 
 
     private fun properIDState(){
-        inputIDState.value = R.string.proper_id_state
+        inputIDState.value = App.applicationContext().resources.getString(R.string.proper_id_state)
         inputIDStateColor.value = R.color.sucessColor
+        idState = true
     }
     private fun properPWState(){
-        inputPWState.value = R.string.proper_pw_state
+        inputPWState.value = App.applicationContext().resources.getString(R.string.proper_pw_state)
         inputPWStateColor.value = R.color.sucessColor
+        pwState = true
     }
     private fun notProperIDState(){
-        inputIDState.value = R.string.not_proper_id_state
+        inputIDState.value = App.applicationContext().resources.getString(R.string.not_proper_id_state)
         inputIDStateColor.value = R.color.failColor
+        idState = false
     }
     private fun notProperPWState(){
-        inputPWState.value = R.string.not_proper_pw_state
+        inputPWState.value = App.applicationContext().resources.getString(R.string.not_proper_pw_state)
         inputPWStateColor.value = R.color.failColor
+        pwState = false
+    }
+    private fun notProperCheckPWState(){
+        inputPWState.value = App.applicationContext().resources.getString(R.string.not_same_pw_state)
+        inputPWStateColor.value = R.color.failColor
+        pwState = false
     }
     private fun overlapIDState(){
-        inputIDState.value = R.string.overlap_id_state
+        inputIDState.value = App.applicationContext().resources.getString(R.string.overlap_id_state)
         inputIDStateColor.value=R.color.failColor
+        idState = true
     }
 }

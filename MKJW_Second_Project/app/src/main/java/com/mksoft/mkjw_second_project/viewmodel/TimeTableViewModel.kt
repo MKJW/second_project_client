@@ -30,8 +30,8 @@ class TimeTableViewModel : BaseViewModel() {
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val errorMessage: MutableLiveData<Int> = MutableLiveData()
-    val tableHeightForBinding: MutableLiveData<Vector<Vector<Int>>> = MutableLiveData()
-    val tableNameForBinding:MutableLiveData<Vector<Vector<String>>> = MutableLiveData()
+    lateinit var tableHeightForBinding:Array<Array<MutableLiveData<Int>>>
+    lateinit var tableNameForBinding:Array<Array<MutableLiveData<Int>>>
 
     private val tableName: Vector<Vector<String>> = Vector()
     private val tableHeight: Vector<Vector<Int>> = Vector()
@@ -119,7 +119,9 @@ class TimeTableViewModel : BaseViewModel() {
         }.concatMap { dbTimeLocations ->
             if (dbTimeLocations.isEmpty()) {
                 sectionAPI.getTimeLocation().concatMap { apiTimeLocations ->
-                    appDataBase.timeLocationDao().insertTimeLocation(apiTimeLocations)
+                    for(timeLocation in apiTimeLocations) {
+                        appDataBase.timeLocationDao().insertTimeLocation(timeLocation)
+                    }
                     Observable.just(apiTimeLocations)
                 }
             } else {
@@ -158,8 +160,8 @@ class TimeTableViewModel : BaseViewModel() {
     private fun checkMakeTimeTableFinish() {
         if (bindedTimeTableCount == 35) {
             //여기서 다 채워진 벡터를 바인딩 쪽으로 넘기자.
-            tableNameForBinding.value = tableName
-            tableHeightForBinding.value = tableHeight
+//            tableNameForBinding = tableName
+//            tableHeightForBinding = tableHeight
             finishLoadTimeTable()
         }
     }

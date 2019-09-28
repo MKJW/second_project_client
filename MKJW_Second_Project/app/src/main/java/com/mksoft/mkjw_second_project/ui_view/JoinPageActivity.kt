@@ -25,15 +25,27 @@ class JoinPageActivity : AppCompatActivity(){
         binding.viewModel = viewModel
         changeInputID()
         changeInputPW()
+        changeInputChekPW()
+        initJoinButton()
+    }
+
+    private fun initJoinButton(){
+        join_page_activity_join_Button.setOnClickListener {
+            viewModel.sendUserForJoin(join_page_activity_inputEmail_EditText.text.toString(),
+                join_page_activity_inputPWCheck_EditText.text.toString(),
+                join_page_activity_inputName_EditText.text.toString()
+                )
+        }
     }
     @SuppressLint("CheckResult")
     private fun changeInputID(){
-        join_page_activity_inputID_EditText
+        join_page_activity_inputEmail_EditText
             .textChanges()
             .subscribe{
-                val inputID = join_page_activity_inputID_EditText.text.toString()
+                val inputID = join_page_activity_inputEmail_EditText.text.toString()
                 val IDState = checkProperID(inputID)
-                viewModel.checkIDState(IDState, inputID)
+                if(inputID.isNotEmpty())
+                    viewModel.checkIDState(IDState, inputID)
             }
     }
     //여기페이지에서 검사를 해주고 그에대한 바인딩은 viewModel에서 하도록 하자
@@ -44,22 +56,47 @@ class JoinPageActivity : AppCompatActivity(){
             .subscribe{
                 val inputPW = join_page_activity_inputPW_EditText.text.toString()
                 val PWState = checkProperPW(inputPW)
-                viewModel.checkPWState(PWState)
+                if(join_page_activity_inputPWCheck_EditText.text.toString().isEmpty()){
+                    if(inputPW.isNotEmpty())
+                        viewModel.checkPWState(PWState)
+                }else{
+                    if(inputPW!=join_page_activity_inputPWCheck_EditText.text.toString()){
+                        viewModel.checkSamePW(false)
+                    }else{
+                        viewModel.checkPWState(PWState)
+                    }
+                }
+
             }
     }
+    @SuppressLint("CheckResult")
+    private fun changeInputChekPW(){
+        join_page_activity_inputPWCheck_EditText
+            .textChanges()
+            .subscribe{
+                val inputCheckPW = join_page_activity_inputPWCheck_EditText.text.toString()
 
-    private fun checkProperID(inputID : String) : Boolean{
-        if(inputID.length<5 || inputID.length>20){
-            return false
-        }
-        var notProperStateFlag = false
-        for(oneChar in inputID){
-            if(!((oneChar in 'a'..'z') || (oneChar in '0'..'9') || (oneChar == '_') || (oneChar == '-'))){
-                notProperStateFlag = true
-                break
+                if(inputCheckPW.isNotEmpty()&&(checkProperPW(join_page_activity_inputPW_EditText.text.toString()))){
+                    if(inputCheckPW != join_page_activity_inputPW_EditText.text.toString()){
+                        viewModel.checkSamePW(false)
+                    }else{
+                        viewModel.checkSamePW(true)
+                    }
+                }
+
             }
+    }
+    private fun checkProperID(inputID : String) : Boolean{
+        var checkEmailState = false
+        var checkSpace = false
+        for(oneChar in inputID){
+            if(oneChar == '@')
+                checkEmailState = true
+            if(oneChar == ' ')
+                checkSpace = true
+
         }
-        return !notProperStateFlag
+        return (checkEmailState)&&(!checkSpace)
     }
     private fun checkProperPW(inputPW: String) : Boolean{
         if(inputPW.length<8 || inputPW.length>16){

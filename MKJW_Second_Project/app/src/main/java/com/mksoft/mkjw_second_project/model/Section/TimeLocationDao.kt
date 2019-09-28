@@ -8,5 +8,5 @@ interface TimeLocationDao {
     fun getTimeLocation(sectionID:String): List<TimeLocation>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTimeLocation(vararg timeLocation: List<TimeLocation>)
+    fun insertTimeLocation(vararg timeLocation: TimeLocation)
 }
