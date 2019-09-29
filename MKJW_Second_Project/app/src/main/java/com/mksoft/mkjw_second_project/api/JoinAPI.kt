@@ -13,6 +13,10 @@ interface JoinAPI{
     @FormUrlEncoded
     @POST("/user/registration")
     fun join(
-        @Field("user") user: User
+        @Field("firstName") firstName:String,
+        @Field("lastName") lastName:String,
+        @Field("password") password:String,
+        @Field("matchingPassword") matchingPassword:String,
+        @Field("email") email:String
     ):Observable<Boolean>
 }
