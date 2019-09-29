@@ -10,8 +10,9 @@ interface JoinAPI{
     fun checkOverlapID(
         @Query("email") user_id: String
     ): Observable<Boolean>
+    @FormUrlEncoded
     @POST("/user/registration")
     fun join(
-        @Body user: User
-    ):Observable<String>
+        @Field("user") user: User
+    ):Observable<Boolean>
 }

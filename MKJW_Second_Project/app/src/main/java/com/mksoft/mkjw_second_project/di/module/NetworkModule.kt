@@ -11,8 +11,10 @@ import dagger.Provides
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
@@ -68,6 +70,7 @@ class NetworkModule{
     internal fun provideRetrofitInterface(httpClient:OkHttpClient.Builder):Retrofit{
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .client(httpClient.build())

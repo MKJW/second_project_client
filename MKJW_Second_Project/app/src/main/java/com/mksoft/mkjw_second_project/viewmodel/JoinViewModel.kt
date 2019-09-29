@@ -39,12 +39,14 @@ class JoinViewModel :BaseViewModel(){
     }
 
     fun sendUserForJoin(email:String, pw:String, name:String){
-        if(idState && pwState){
+        if(idState && pwState && name.length>=2){
 
             subscription = joinAPI.join(User(name.substring(1, name.length-1), name.substring(0,1), email, pw, pw))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({result-> Log.d("Login",result)},{})
+                .subscribe({
+                        result-> Log.d("Login",result.toString())}
+                    ,{})
 
 
         }
