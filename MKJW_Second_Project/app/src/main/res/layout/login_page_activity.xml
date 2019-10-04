@@ -56,8 +56,9 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/custom_mint_button"
                 android:textStyle="bold"
+                android:textColor="#000"
                 android:layout_below="@+id/login_page_activity_inputPW_EditText"
-                tools:text="로그인"/>
+                android:text="로그인"/>
 
         <Button
                 android:id="@+id/login_page_activity_signUp_Button"

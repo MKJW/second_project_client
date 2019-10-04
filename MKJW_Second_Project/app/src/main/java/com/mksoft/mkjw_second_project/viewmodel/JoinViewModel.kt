@@ -31,17 +31,11 @@ class JoinViewModel :BaseViewModel(){
 
 
 
-    private lateinit var subscription: Disposable
-
-    override fun onCleared() {
-        super.onCleared()
-        subscription.dispose()
-    }
 
     fun sendUserForJoin(email:String, pw:String, name:String){
         if(idState && pwState && name.length>=2){
 
-            subscription = joinAPI.join(name.substring(1, name.length-1), name.substring(0,1), pw, pw, email)
+            joinAPI.join(name.substring(1, name.length-1), name.substring(0,1), pw, pw, email)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

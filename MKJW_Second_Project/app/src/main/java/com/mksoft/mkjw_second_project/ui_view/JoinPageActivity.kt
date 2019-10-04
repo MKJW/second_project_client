@@ -1,7 +1,11 @@
 package com.mksoft.mkjw_second_project.ui_view
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
@@ -20,6 +24,7 @@ class JoinPageActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.join_page_activity)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)//키보드가 화면을 가릴 때
         binding = DataBindingUtil.setContentView(this, R.layout.join_page_activity)
         viewModel = ViewModelProviders.of(this, ViewModelFactory()).get(JoinViewModel::class.java)
         binding.viewModel = viewModel
@@ -125,4 +130,11 @@ class JoinPageActivity : AppCompatActivity(){
         return false
     }
 
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        if (currentFocus != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+        }
+        return super.dispatchTouchEvent(ev)
+    }
 }

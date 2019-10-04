@@ -30,11 +30,9 @@ class TimeTableViewModel : BaseViewModel() {
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val errorMessage: MutableLiveData<Int> = MutableLiveData()
-    lateinit var tableHeightForBinding:Array<Array<MutableLiveData<Int>>>
-    lateinit var tableNameForBinding:Array<Array<MutableLiveData<Int>>>
+    val tableHeightForBindin:MutableList<MutableList<MutableLiveData<Int>>> = mutableListOf()
+    val tableNameForBinding:MutableList<MutableList<MutableLiveData<String>>> = mutableListOf()
 
-    private val tableName: Vector<Vector<String>> = Vector()
-    private val tableHeight: Vector<Vector<Int>> = Vector()
     private val courseNameSection: HashMap<String, Section> = HashMap()//눌렀을 때 정보 받아오기
     private val sectionIDcourseName: HashMap<String, String> = HashMap()
     //시간표를 만들때 time_location에는 sectionID가 들어있으니 이에 맞는 코스 이름을 반환 받기 위해서
@@ -46,7 +44,22 @@ class TimeTableViewModel : BaseViewModel() {
     private var bindedTimeTableCount: Int = 0
 
     init {
+        initTableLiveData()
         loadTimeTable()
+    }
+
+    private fun initTableLiveData(){
+        for(i in 0 until 7){
+            var initNameTable = mutableListOf<MutableLiveData<String>>()
+            var initHeightTable = mutableListOf<MutableLiveData<Int>>()
+            for(j in 0 until 5){
+                initNameTable.add(MutableLiveData())
+                initHeightTable.add(MutableLiveData())
+            }
+            tableNameForBinding.add(initNameTable)
+            tableHeightForBindin.add(initHeightTable)
+
+        }
     }
 
     override fun onCleared() {
@@ -140,13 +153,13 @@ class TimeTableViewModel : BaseViewModel() {
         //이때 세션아이디를 넘기면 코스네임을 받아서 그 이름으로 레이아웃을 바인딩해주자
         for (timeLocation in timeLocations) {
             val dayNumber = dayToNumberTable[timeLocation.day]
-            tableHeight[dayNumber!!][timeLocation.start_time.toInt()] =
+            tableHeightForBindin[dayNumber!!][timeLocation.start_time.toInt()].value =
                 60 * (timeLocation.end_time.toInt() - timeLocation.start_time.toInt() + 1)
-            tableName[dayNumber!!][timeLocation.start_time.toInt()] = sectionIDcourseName[timeLocation.section_id]
+            tableNameForBinding[dayNumber!!][timeLocation.start_time.toInt()].value = sectionIDcourseName[timeLocation.section_id]
 
             for (sectionTime in timeLocation.start_time.toInt() + 1..timeLocation.end_time.toInt()) {
-                tableHeight[dayNumber!!][sectionTime] = 0
-                tableName[dayNumber!!][timeLocation.start_time.toInt()] = ""
+                tableHeightForBindin[dayNumber!!][sectionTime].value = 0
+                tableNameForBinding[dayNumber!!][timeLocation.start_time.toInt()].value = ""
             }//시작되는 위치부터 끝나는 위치까지의 높이 설정
             //이름 설정
             bindedTimeTableCount += (timeLocation.end_time.toInt() - timeLocation.start_time.toInt() + 1)
@@ -177,8 +190,8 @@ class TimeTableViewModel : BaseViewModel() {
     }
 
 
-    private fun testGetvector():Vector<Vector<Int>>{
-        return tableHeight
-    }
+
+
+
 
 }

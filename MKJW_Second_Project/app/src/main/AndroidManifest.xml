@@ -15,15 +15,21 @@
             android:supportsRtl="true"
             android:networkSecurityConfig="@xml/network_security_config"
             android:theme="@style/AppTheme">
-        <activity android:name=".ui_view.RegisterCoursePageActivity">
-
-        </activity>
-        <activity android:name=".ui_view.JoinPageActivity">
+        <activity android:name=".ui_view.LoginPageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".ui_view.RegisterCoursePageActivity">
+
+        </activity>
+        <activity android:name=".ui_view.JoinPageActivity"
+                  android:parentActivityName=".ui_view.LoginPageActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".ui_view.LoginPageActivity" />
         </activity>
     </application>
 
