@@ -2,11 +2,17 @@ package com.mksoft.mkjw_second_project
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
+import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
+import com.mksoft.mkjw_second_project.service.FirebaseService
 
 class App :Application(){
 
     init{
         instance = this
+
     }
 
     companion object {

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "690673098035",
+    "firebase_url": "https://school-network-dc67c.firebaseio.com",
+    "project_id": "school-network-dc67c",
+    "storage_bucket": "school-network-dc67c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690673098035:android:a6422bb99213caabc7b246",
+        "android_client_info": {
+          "package_name": "com.mksoft.mkjw_second_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "690673098035-ckbnaq8re3e06gbmviscdrjhgiev1msg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOXnKxY609tUWMeGnCRg75BmQqjdbE_is"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "690673098035-ckbnaq8re3e06gbmviscdrjhgiev1msg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

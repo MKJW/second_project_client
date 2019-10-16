@@ -31,6 +31,16 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".ui_view.LoginPageActivity" />
         </activity>
+
+        <service
+                android:name=".service.FirebaseService"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>
