@@ -26,19 +26,6 @@ class LoginPageActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)//키보드가 화면을 가릴 때
         setContentView(R.layout.login_page_activity)
-        //로그인 페이지에서 FCM 토큰 갱신
-        FirebaseInstanceId.getInstance().instanceId
-            .addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    return@OnCompleteListener
-                }
-
-                // Get new Instance ID token
-                val token = task.result?.token
-                Log.d("testToken", token)
-            })
-
-
 
         viewModel = ViewModelProviders.of(this, ViewModelFactory()).get(LoginViewModel::class.java)
 

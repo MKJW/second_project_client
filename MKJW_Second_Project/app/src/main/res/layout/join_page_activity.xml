@@ -13,8 +13,7 @@
     <RelativeLayout
             android:id="@+id/join_page_activity_background_RelativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp">
+            android:layout_height="match_parent">
         <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -37,7 +36,10 @@
                 android:layout_below="@+id/join_page_activity_Toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
                 <TextView
                         android:id="@+id/join_page_activity_headerName_TextView"
                         android:text="Name"

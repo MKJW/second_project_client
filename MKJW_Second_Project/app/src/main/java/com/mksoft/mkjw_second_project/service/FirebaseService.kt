@@ -1,9 +1,7 @@
 package com.mksoft.mkjw_second_project.service
 
-import android.annotation.TargetApi
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -11,17 +9,23 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.mksoft.mkjw_second_project.App
 import com.mksoft.mkjw_second_project.R
-import okhttp3.internal.Util
+import com.mksoft.mkjw_second_project.di.ViewModelFactory
+import com.mksoft.mkjw_second_project.viewmodel.BoardSelectListViewModel
+import com.mksoft.mkjw_second_project.viewmodel.FCMServiceBindingModel
+
 
 class FirebaseService : FirebaseMessagingService (){
-
+    var viewModel:FCMServiceBindingModel = FCMServiceBindingModel()
 
     override fun onNewToken(firebaseToken: String) {
         super.onNewToken(firebaseToken)
-        Log.d("Firebase", "FirebaseService : " + firebaseToken)
+        Log.d("sendToken", "testToken" + firebaseToken)
+        viewModel.sendToken(firebaseToken)
     }
 
 

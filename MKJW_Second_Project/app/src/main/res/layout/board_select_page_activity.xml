@@ -5,12 +5,12 @@
     <data>
         <variable
                 name = "viewModel"
-                type = "com.mksoft.mkjw_second_project.viewmodel.RegisterCourseListViewModel"
+                type = "com.mksoft.mkjw_second_project.viewmodel.BoardSelectListViewModel"
         />
     </data>
 
     <RelativeLayout
-            android:id="@+id/register_courses_page_activity_backgroundLayout_RelativeLayout"
+            android:id="@+id/board_select_page_activity_layout_RelativeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
     >
@@ -19,32 +19,30 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 android:layout_alignParentTop="true"
-                android:id="@+id/register_courses_page_activity_Toolbar"
+                android:id="@+id/board_select_page_activity_toolbar_Toolbar"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
             <TextView
-                    android:id="@+id/register_courses_page_activity_toolbarTitle_TextView"
-                    android:text="수강신청"
+                    android:id="@+id/board_select_page_activity_title_TextView"
+                    android:text="3-5"
+                    android:layout_margin="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                    android:textStyle="bold"
-                    android:layout_gravity="center" />
+                    android:textStyle="bold"/>
 
         </androidx.appcompat.widget.Toolbar>
         <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                app:mutableVisibility="@{viewModel.getLoadingVisibility()}"/>
+                android:layout_centerInParent="true"/>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_margin="10dp"
-                android:id="@+id/register_courses_page_activity_registerCourse_RecyclerView"
+                android:id="@+id/board_select_page_activity_boardList_RecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/register_courses_page_activity_Toolbar"
-                app:adapter="@{viewModel.getCourseListAdapter()}"
+                android:layout_below="@+id/board_select_page_activity_toolbar_Toolbar"
 
         />
 

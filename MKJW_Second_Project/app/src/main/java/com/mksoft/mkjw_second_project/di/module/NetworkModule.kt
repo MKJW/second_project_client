@@ -1,10 +1,7 @@
 package com.mksoft.mkjw_second_project.di.module
 
 import android.graphics.Paint
-import com.mksoft.mkjw_second_project.api.CourseAPI
-import com.mksoft.mkjw_second_project.api.JoinAPI
-import com.mksoft.mkjw_second_project.api.LoginAPI
-import com.mksoft.mkjw_second_project.api.SectionAPI
+import com.mksoft.mkjw_second_project.api.*
 import com.mksoft.mkjw_second_project.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -37,6 +34,11 @@ class NetworkModule{
     @Singleton
     internal  fun provideJoinAPI(retrofit: Retrofit): JoinAPI {
         return retrofit.create(JoinAPI::class.java)
+    }
+    @Provides
+    @Singleton
+    internal  fun provideFCMAPI(retrofit: Retrofit):FCMAPI{
+        return retrofit.create(FCMAPI::class.java)
     }
     @Provides
     @Singleton

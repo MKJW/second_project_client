@@ -2,7 +2,7 @@ package com.mksoft.mkjw_second_project.utils
 
 //고정으로 미리 정하는 변수들...
 
-const val BASE_URL: String = "https://130cea44.ngrok.io"
+const val BASE_URL: String = "https://7a4401da.ngrok.io"
 
 
 //임시 학교아이디 학년

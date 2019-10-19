@@ -2,10 +2,7 @@ package com.mksoft.mkjw_second_project.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.mksoft.mkjw_second_project.viewmodel.JoinViewModel
-import com.mksoft.mkjw_second_project.viewmodel.LoginViewModel
-import com.mksoft.mkjw_second_project.viewmodel.RegisterCourseListViewModel
-import com.mksoft.mkjw_second_project.viewmodel.TimeTableViewModel
+import com.mksoft.mkjw_second_project.viewmodel.*
 import java.sql.Time
 
 class ViewModelFactory: ViewModelProvider.Factory{
@@ -18,6 +15,8 @@ class ViewModelFactory: ViewModelProvider.Factory{
             return JoinViewModel() as T
         }else if(modelClass.isAssignableFrom(LoginViewModel::class.java)){
             return LoginViewModel() as T
+        }else if(modelClass.isAssignableFrom(BoardSelectListViewModel::class.java)){
+            return BoardSelectListViewModel() as T
         }
 
 

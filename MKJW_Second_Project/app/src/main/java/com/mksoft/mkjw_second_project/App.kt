@@ -6,7 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
-import com.mksoft.mkjw_second_project.service.FirebaseService
+import javax.inject.Inject
 
 class App :Application(){
 
@@ -20,6 +20,7 @@ class App :Application(){
         fun applicationContext() : Context {
             return instance!!.applicationContext
         }
-    }
 
+
+    }
 }

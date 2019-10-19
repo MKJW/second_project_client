@@ -1,7 +1,9 @@
 package com.mksoft.mkjw_second_project.di.component
 
+import com.mksoft.mkjw_second_project.App
 import com.mksoft.mkjw_second_project.di.module.DataBaseModule
 import com.mksoft.mkjw_second_project.di.module.NetworkModule
+import com.mksoft.mkjw_second_project.service.FirebaseService
 import com.mksoft.mkjw_second_project.viewmodel.*
 import dagger.Component
 import javax.inject.Singleton
@@ -17,6 +19,8 @@ interface AppComponent {
     fun inject(timeTableViewModel: TimeTableViewModel)
     fun inject(joinViewModel: JoinViewModel)
     fun inject(loginViewModel: LoginViewModel)
+    fun inject(boardSelectListViewModel: BoardSelectListViewModel)
+    fun inject(fcmServiceBindingModel: FCMServiceBindingModel)
     @Component.Builder
     interface Builder {
         fun build(): AppComponent

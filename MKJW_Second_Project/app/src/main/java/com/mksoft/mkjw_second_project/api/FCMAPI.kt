@@ -4,15 +4,13 @@ import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
-import retrofit2.http.Query
 
-interface LoginAPI {
+interface FCMAPI {
+
     @FormUrlEncoded
-    @POST("/login")
-    fun login(
-        @Field("username") username: String,
-        @Field("password") password: String
+    @POST("/fcm/test/notification")
+    fun sendFCMToken(
+        @Field("device-token") deviceToken: String
     ): Observable<Boolean>
 
-//
 }
