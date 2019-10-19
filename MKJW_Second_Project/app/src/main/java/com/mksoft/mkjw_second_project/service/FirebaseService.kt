@@ -35,9 +35,9 @@ class FirebaseService : FirebaseMessagingService (){
 
     private fun sendNotification(remoteMessage: RemoteMessage){
 
-
-        val title = remoteMessage.data["title"]
-        val message = remoteMessage.data["message"]
+        
+        val title = remoteMessage.notification!!.title
+        val message = remoteMessage.notification!!.body
 
         val channelID = "school network channel"
         val channelName = "message"

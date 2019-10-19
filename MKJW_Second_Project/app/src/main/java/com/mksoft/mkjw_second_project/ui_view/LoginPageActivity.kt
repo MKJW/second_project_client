@@ -15,7 +15,6 @@ import com.google.firebase.iid.FirebaseInstanceId
 import com.mksoft.mkjw_second_project.App
 import com.mksoft.mkjw_second_project.R
 import com.mksoft.mkjw_second_project.di.ViewModelFactory
-import com.mksoft.mkjw_second_project.service.FCMServiceBindingModel
 import com.mksoft.mkjw_second_project.viewmodel.JoinViewModel
 import com.mksoft.mkjw_second_project.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.login_page_activity.*
@@ -27,21 +26,7 @@ class LoginPageActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)//키보드가 화면을 가릴 때
         setContentView(R.layout.login_page_activity)
-        //test
-        FirebaseInstanceId.getInstance().instanceId
-            .addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    return@OnCompleteListener
-                }
-                var serviceBindingModel: FCMServiceBindingModel =
-                    FCMServiceBindingModel()
 
-                // Get new Instance ID token
-                val token = task.result?.token
-                serviceBindingModel.sendToken(token!!)
-                // Log and toast
-
-            })
         viewModel = ViewModelProviders.of(this, ViewModelFactory()).get(LoginViewModel::class.java)
 
         initLoginButton()
