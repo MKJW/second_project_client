@@ -1,4 +1,4 @@
-package com.mksoft.mkjw_second_project.viewmodel
+package com.mksoft.mkjw_second_project.service
 
 import android.util.Log
 import com.mksoft.mkjw_second_project.api.FCMAPI

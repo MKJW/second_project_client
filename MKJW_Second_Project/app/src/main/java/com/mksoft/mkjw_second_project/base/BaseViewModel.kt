@@ -7,6 +7,7 @@ import com.mksoft.mkjw_second_project.di.component.AppComponent
 import com.mksoft.mkjw_second_project.di.component.DaggerAppComponent
 import com.mksoft.mkjw_second_project.di.module.DataBaseModule
 import com.mksoft.mkjw_second_project.di.module.NetworkModule
+import com.mksoft.mkjw_second_project.service.FCMServiceBindingModel
 import com.mksoft.mkjw_second_project.viewmodel.*
 
 abstract class BaseViewModel: ViewModel(){
