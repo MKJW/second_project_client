@@ -18,7 +18,8 @@ interface AppComponent {
     fun inject(timeTableViewModel: TimeTableViewModel)
     fun inject(joinViewModel: JoinViewModel)
     fun inject(loginViewModel: LoginViewModel)
-    fun inject(boardSelectListViewModel: BoardSelectListViewModel)
+    fun inject(boardCategoryListViewModel: BoardCategoryListViewModel)
+    fun inject(boardCategoryItemViewModel: BoardCategoryItemViewModel)
     fun inject(fcmServiceBindingModel: FCMServiceBindingModel)
     @Component.Builder
     interface Builder {

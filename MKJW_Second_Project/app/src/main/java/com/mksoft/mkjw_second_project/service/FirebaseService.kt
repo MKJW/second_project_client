@@ -35,7 +35,7 @@ class FirebaseService : FirebaseMessagingService (){
 
     private fun sendNotification(remoteMessage: RemoteMessage){
 
-        
+
         val title = remoteMessage.notification!!.title
         val message = remoteMessage.notification!!.body
 

@@ -27,8 +27,9 @@ abstract class BaseViewModel: ViewModel(){
             is TimeTableViewModel -> injector.inject(this)
             is LoginViewModel -> injector.inject(this)
             is JoinViewModel -> injector.inject(this)
-            is BoardSelectListViewModel -> injector.inject(this)
+            is BoardCategoryListViewModel -> injector.inject(this)
             is FCMServiceBindingModel -> injector.inject(this)
+            is BoardCategoryItemViewModel -> injector.inject(this)
         }
     }
 }

@@ -3,10 +3,13 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-
+        <variable
+                name = "viewModel"
+                type = "com.mksoft.mkjw_second_project.viewmodel.BoardCategoryItemViewModel"
+        />
     </data>
     <RelativeLayout
-            android:id="@+id/board_title_item_layout"
+            android:id="@+id/board_category_item_layout"
             android:layout_width="match_parent"
             android:layout_height="78dp">
         <TextView
@@ -15,22 +18,24 @@
                 android:layout_margin="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/board_title_item_name_textView"
+                android:id="@+id/board_category_item_name_textView"
                 android:textStyle="bold"
                 android:textSize="40dp"
                 android:gravity="center"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
+                app:mutableText="@{viewModel.getCategoryName}"
         />
         <TextView
                 android:text="new"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:layout_toRightOf="@+id/board_title_item_name_textView"
+                android:layout_toRightOf="@+id/board_category_item_name_textView"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                app:mutableVisibility="@{viewModel.getNewStateVisibility}"/>
         <TextView
                 android:textStyle="bold"
                 android:text="10"
@@ -43,6 +48,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/red_circle"
+                app:mutableVisibility="@{viewModel.getNewStateVisibility}"
+                app:mutableText="@{viewModel.getNotYetReadCount}"
         />
 
         <View

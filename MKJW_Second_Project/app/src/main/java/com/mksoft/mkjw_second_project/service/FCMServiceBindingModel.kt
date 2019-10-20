@@ -22,7 +22,7 @@ class FCMServiceBindingModel : BaseViewModel(){
                 ,{})
 
     }
-
+    //메시지 분류에 따라서 내부 디비에 카운트를 갱신하자
 
 
 
