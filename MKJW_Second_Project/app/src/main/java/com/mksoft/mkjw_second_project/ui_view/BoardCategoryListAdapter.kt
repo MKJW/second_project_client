@@ -2,17 +2,18 @@ package com.mksoft.mkjw_second_project.ui_view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mksoft.mkjw_second_project.App
 import com.mksoft.mkjw_second_project.R
 import com.mksoft.mkjw_second_project.databinding.BoardCategoryItemBinding
 import com.mksoft.mkjw_second_project.model.Board.BoardCategory
+import com.mksoft.mkjw_second_project.model.Board.BoardCategoryContents
 import com.mksoft.mkjw_second_project.viewmodel.BoardCategoryItemViewModel
 
 class BoardCategoryListAdapter: RecyclerView.Adapter<BoardCategoryListAdapter.ViewHolder>(){
-    private lateinit var boardCategoryList:List<BoardCategory>
+    private lateinit var boardCategoryContentsList:List<BoardCategoryContents>
 
 
 
@@ -22,30 +23,38 @@ class BoardCategoryListAdapter: RecyclerView.Adapter<BoardCategoryListAdapter.Vi
     }
 
     override fun getItemCount(): Int {
-        return if(::boardCategoryList.isInitialized) boardCategoryList.size else 0
+        return if(::boardCategoryContentsList.isInitialized) boardCategoryContentsList.size else 0
     }
 
     override fun onBindViewHolder(holder: BoardCategoryListAdapter.ViewHolder, position: Int) {
-        holder.bind(boardCategoryList[position])
+        holder.bind(boardCategoryContentsList[position])
         holder.itemView.setOnClickListener {
             holder.viewClick()
         }
+        holder.initRecyclerView()
+
     }
 
-    fun updateBoardCategory(boardCategoryList: List<BoardCategory>){
-        this.boardCategoryList = boardCategoryList
+    fun updateBoardCategory(boardCategoryContentsList: List<BoardCategoryContents>){
+        this.boardCategoryContentsList = boardCategoryContentsList
         notifyDataSetChanged()
     }
     class ViewHolder(private val binding: BoardCategoryItemBinding):RecyclerView.ViewHolder(binding.root){
         private val viewModel: BoardCategoryItemViewModel
                 = BoardCategoryItemViewModel()
 
-        fun bind(boardCategory: BoardCategory){
-            viewModel.bind(boardCategory)//뷰모델 바인딩할 값
+        fun bind(boardCategoryContents: BoardCategoryContents){
+            viewModel.bind(boardCategoryContents)//뷰모델 바인딩할 값
             binding.viewModel = viewModel
+
         }
         fun viewClick(){
-            viewModel.clickView()
+            viewModel.clickView(binding.boardCategoryItemContentsListRecyclerView)
+
+        }
+        fun initRecyclerView(){
+            binding.boardCategoryItemContentsListRecyclerView.layoutManager = LinearLayoutManager(App.applicationContext())
+            binding.boardCategoryItemContentsListRecyclerView.setHasFixedSize(true)
         }
     }
 }

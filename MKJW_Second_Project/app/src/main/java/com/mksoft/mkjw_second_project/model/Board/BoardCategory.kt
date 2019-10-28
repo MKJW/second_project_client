@@ -1,11 +1,13 @@
 package com.mksoft.mkjw_second_project.model.Board
 
 import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
+import java.util.*
 
 
-@Entity(primaryKeys = ["rootCategory", "currentCategory"])
+@Entity
 data class BoardCategory(
-    val rootCategory:String,
-    val currentCategory:String,
-    var notYetReadContentsCount:Int
+    @field:PrimaryKey val categoryName:String,
+    var notYetReadContentsCount:Int?=0
 )

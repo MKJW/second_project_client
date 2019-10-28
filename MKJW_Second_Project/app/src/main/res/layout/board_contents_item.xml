@@ -3,7 +3,10 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-
+        <variable
+                name = "viewModel"
+                type = "com.mksoft.mkjw_second_project.viewmodel.BoardContentsItemViewModel"
+        />
     </data>
     <RelativeLayout
             android:id="@+id/board_contents_item_layout_RelativeLayout"
@@ -23,7 +26,8 @@
                 android:textSize="30dp"
                 android:text="작성자"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp"
+                app:mutableText="@{viewModel.getWriter()}"/>
         <TextView
                 android:layout_below="@+id/board_contents_item_writer_TextView"
                 android:id="@+id/board_contents_item_contents_TextView"
@@ -31,7 +35,8 @@
                 android:textSize="20dp"
                 android:text="내용"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                app:mutableText="@{viewModel.getContents()}"/>
     </RelativeLayout>
 
 </layout>

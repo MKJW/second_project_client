@@ -4,7 +4,12 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.mksoft.mkjw_second_project.base.BaseViewModel
 import com.mksoft.mkjw_second_project.model.Board.BoardCategory
+import com.mksoft.mkjw_second_project.model.Board.BoardCategoryContents
+import com.mksoft.mkjw_second_project.model.Board.BoardContents
 import com.mksoft.mkjw_second_project.model.DB.AppDataBase
+import com.mksoft.mkjw_second_project.ui_view.BoardContentsListAdapter
+import com.mksoft.mkjw_second_project.utils.collapse
+import com.mksoft.mkjw_second_project.utils.expand
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -21,31 +26,60 @@ class BoardCategoryItemViewModel :BaseViewModel(){
     val categoryName:MutableLiveData<String> = MutableLiveData()
     val notYetReadCount:MutableLiveData<String> = MutableLiveData()
     val newStateVisibility:MutableLiveData<Int> = MutableLiveData()
-    lateinit var boardCategory:BoardCategory
+    val upButtonVisibility:MutableLiveData<Int> = MutableLiveData()
+    val downButtonVisibility:MutableLiveData<Int> = MutableLiveData()
+    var expandState = false
+    lateinit var boardCategoryContents:BoardCategoryContents
     private lateinit var subscription: Disposable
 
+    val boardContentsListAdapter:BoardContentsListAdapter = BoardContentsListAdapter()
     override fun onCleared() {
         super.onCleared()
         subscription.dispose()
     }
 
-    fun bind(boardCategory:BoardCategory) {
-        this.boardCategory = boardCategory
-        categoryName.value = this.boardCategory.currentCategory
-        if(this.boardCategory.notYetReadContentsCount == 0){
+    fun bind(boardCategoryContents:BoardCategoryContents) {
+        this.boardCategoryContents = boardCategoryContents
+        categoryName.value = this.boardCategoryContents.boardCategory.categoryName
+        if(this.boardCategoryContents.boardCategory.notYetReadContentsCount == 0){
             newStateVisibility.value = View.GONE
         }else{
             newStateVisibility.value = View.VISIBLE
-            notYetReadCount.value = this.boardCategory.notYetReadContentsCount.toString()
+            notYetReadCount.value = this.boardCategoryContents.boardCategory.notYetReadContentsCount.toString()//읽지 않은 수
+        }
+        yetExpandButtonState()
+        //리사이클러뷰 바인딩
+        updateBoardContents(boardCategoryContents.boardContentsList!!)
+
+    }
+    private fun expandButtonState(){
+        upButtonVisibility.value = View.VISIBLE
+        downButtonVisibility.value = View.GONE
+
+    }
+    private fun yetExpandButtonState(){
+        upButtonVisibility.value = View.GONE
+        downButtonVisibility.value = View.VISIBLE
+
+    }
+    fun clickView(expandView:View){
+        newStateVisibility.value = View.GONE
+        readContents()//new 마크 갱신
+
+        if(!expandState){
+            expand(expandView)
+            expandState = true
+            expandButtonState()
+        }else{
+
+            collapse(expandView)
+            expandState = false
+            yetExpandButtonState()
         }
     }
-    fun clickView(){
-        newStateVisibility.value = View.GONE
-        readContents()
-    }
     private fun readContents(){
-        boardCategory.notYetReadContentsCount = 0
-        insertBoardCategory(boardCategory)
+        boardCategoryContents.boardCategory.notYetReadContentsCount = 0
+        insertBoardCategory(boardCategoryContents.boardCategory)
     }
     //여기서 눌러지면 내부에 저장되어있는 아직 읽지 않은 상태를 초기화 시켜주자
     private fun insertBoardCategory(boardCategory: BoardCategory) {
@@ -57,5 +91,9 @@ class BoardCategoryItemViewModel :BaseViewModel(){
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
             }
+    }
+    private fun updateBoardContents(boardContentsList:MutableList<BoardContents>){
+
+        boardContentsListAdapter.updateBoardContents(boardContentsList)
     }
 }
