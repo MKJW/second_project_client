@@ -13,60 +13,81 @@
             android:layout_margin="10dp">
 
         <TextView
-                android:layout_margin="80dp"
                 android:id="@+id/login_page_activity_appTitle_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="어플이름"
-                android:textStyle="bold"
-                android:textSize="40dp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginStart="80dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="80dp"
 
-        />
-        <EditText
-                android:id="@+id/login_page_activity_inputID_EditText"
+                android:layout_marginRight="80dp"
+                android:layout_marginBottom="80dp"
+                android:text="School Network"
+                android:textAppearance="@style/TextAppearance.Shrine.Title"
+                android:textSize="40dp"
+                android:textStyle="bold" />
+        <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Shrine.TextInputLayout"
+                android:id="@+id/login_page_activity_inputID_Layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
                 android:layout_below="@+id/login_page_activity_appTitle_TextView"
-                android:ems="10"
-                android:hint="ID"
-                android:inputType="textPersonName"
-                android:layout_marginTop="50dp"/>
+                android:hint="아이디">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_page_activity_inputID_EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        <EditText
-                android:id="@+id/login_page_activity_inputPW_EditText"
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Shrine.TextInputLayout"
+                android:id="@+id/login_page_activity_inputPW_Layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below = "@+id/login_page_activity_inputID_EditText"
-                android:ems="10"
-                android:hint="PW"
-                android:layout_marginTop="15dp"
-                android:inputType="textPassword" />
+                android:layout_margin="4dp"
+                android:hint="비밀번호"
+                android:layout_below="@+id/login_page_activity_inputID_Layout"
+                app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_page_activity_inputPW_EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <ProgressBar
+                android:visibility="gone"
                 android:layout_marginTop="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_below="@+id/login_page_activity_inputPW_EditText"/>
-        <Button
+                android:layout_below="@+id/login_page_activity_inputPW_Layout"/>
+        <com.google.android.material.button.MaterialButton
+                android:fontFamily="@font/poor_story_regular"
+                style="@style/Widget.Shrine.Button"
                 android:id="@+id/login_page_activity_signIn_Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/custom_mint_button"
                 android:textStyle="bold"
-                android:textColor="#000"
-                android:layout_below="@+id/login_page_activity_inputPW_EditText"
+                android:layout_below="@+id/login_page_activity_inputPW_Layout"
                 android:text="로그인"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
+                android:fontFamily="@font/poor_story_regular"
+                style="@style/Widget.Shrine.Button.TextButton"
                 android:id="@+id/login_page_activity_signUp_Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/custom_gray_button"
                 android:layout_centerHorizontal="true"
                 android:layout_weight="1"
                 android:text="회원가입"
