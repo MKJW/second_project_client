@@ -55,6 +55,17 @@
 
 ## 기능
 
+
+## Login page
+> 로그인 페이지
+<img src="https://github.com/MKJW/second_project_client/blob/master/GIF/loginPage.gif" alt="alt text" width="250px" height="500px">
+
+
+### Logic
+- Login click → loading → 1. correct : receive token 2. not correct : deny 3. yet certification : change email page : 로그인 성공시 토큰 부여 받고 실패시 거부, 인증이 아직 완료되지 않으면 이메일 변경 페이지로 넘어감
+- join click → join page
+
+
 ## Board page
 > 게시판 페이지
 <img src="https://github.com/MKJW/second_project_client/blob/master/GIF/boardTest.gif" alt="alt text" width="250px" height="500px">
@@ -65,15 +76,6 @@
 - board category recyclerview item 안에 board contents list를 넣어주자.
 - board category recyclerview item 클릭 시(확장 상태의 경우) 다운버튼을 업 버튼으로 (확장이 되지 않은 상태에서) 클릭시에는 반대로...
 
-
-## Login page
-> 로그인 페이지
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a75a9129-5b70-443c-837e-0e4d0b88f9f7/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAT73L2G45CD3DBSWS%2F20190917%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20190917T040937Z&X-Amz-Expires=86400&X-Amz-Security-Token=AgoJb3JpZ2luX2VjEKH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJGMEQCIErMU245u9VZypOtGrKEIYjAYU0BeaCpFs0brkuIQfGPAiAWmK3bTBzNNqExnYiY2NEEssbg%2BR59zFQinZ1Q%2Bfjk8CraAwhpEAAaDDI3NDU2NzE0OTM3MCIMZZg%2FdUg5RbZEffePKrcDXkpE%2FrpKZlGZMZhNmB9MU0rxvHTuY6tjTpfkVdwnkarbp0PEmB5V1ObP4sZonAryRGV%2BrjokraVoqJi7fjJHIm9tEFxFSghHzgbLiDJcNHJ%2F4ZHHHJjhZv2YglbcNe5mZsoL%2BagwsiyraJYTTdsA4H8b%2Fc03JZ33sXpcv%2BxRPdUAYhMNYX23cVM%2BJh0%2BjgD9pqhOHhRTk1WxeRydE%2FN%2FxYI3bpzSbipHPnJPeT%2BBUS4J8QKeI2nNlbZWXK3c15jvRQs5TxX7Vo0KP%2BgjURxSmFbebwdek0WmHbMGw5%2F2iW8JIHEFrx%2F30x8CQRiyu9URbWIb16jDJIns53BXWtGQShzK4Tal6WAhgrEu3MJdP43OwxEL5XGCpW9Mr3wKmfaRF%2B9%2F%2BBroT4HcAgFhhScJZ3X1THU8O12wf12hGaDL5WHWTmVQMlEL6WXzkXfBWhO5u%2FJnRG3RK76G%2BW419GaPMQMfb3kpPmnEaNiL%2B2F1nJ8XMjJdyZqSsFQrTqYA7Z0WhtSTP3j2zQpbqRoqZrFwo7KlPHTt5xj1Jl3BBuu9k0r2hZR0sazFBL2%2Fef0GSVGmvr2nJyYNATDdzIDsBTq1Adbh%2BULqlzZK3O2UJ%2BE96vkdSCcJpkLtVPDCPBIl1C4w3jIDvu%2B2WqtE3zN2ReoUeukaF51Ac8khSS4HqphOzGmJXIlLZ2uQvdncabdheVChc2DhOQhfN4K9%2Bh2yycCGZxsb7Q7MSPmCqoPliSprYYlepTOsZvBPmRB%2F3fOTbHn0rnvJT9QrcL%2FQGh2uhLwesZpalf%2FCB13vIYP%2Fd2wiShK%2FiQU2X5pyXaRVoYhDZakVwh5Cgtc%3D&X-Amz-Signature=2119ea8f549f45d03323be15e6af632088b2d10f44941a84f2e5f39da42d3ac8&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22" alt="alt text" width="250px" height="500px">
-
-
-### Logic
-- Login click → loading → 1. correct : receive token 2. not correct : deny 3. yet certification : change email page : 로그인 성공시 토큰 부여 받고 실패시 거부, 인증이 아직 완료되지 않으면 이메일 변경 페이지로 넘어감
-- join click → join page
 
 ## join page
 > 회원 가입 페이지
