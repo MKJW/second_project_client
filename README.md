@@ -59,6 +59,12 @@
 > 게시판 페이지
 <img src="https://github.com/MKJW/second_project_client/blob/master/GIF/boardTest.gif" alt="alt text" width="250px" height="500px">
 
+### Logic
+- push시에 room을 통하여 BoardCategory에 읽지 않은 게시물의 숫자를 저장하자.
+- 서버에 board list 요청시에 먼저 내부디비에 BoardCategory를 불러오고 아직 읽지 않은 상태를 hash table에 저장하고 서버로부터 받은 board 리스트를 통하여 아직 읽지 않은 게시물이 있다면 new 마크를 달아주자.
+- board category recyclerview item 안에 board contents list를 넣어주자.
+- board category recyclerview item 클릭 시(확장 상태의 경우) 다운버튼을 업 버튼으로 (확장이 되지 않은 상태에서) 클릭시에는 반대로...
+
 
 ## Login page
 > 로그인 페이지
