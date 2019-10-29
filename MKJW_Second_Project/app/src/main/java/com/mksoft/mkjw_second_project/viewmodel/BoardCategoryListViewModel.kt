@@ -36,6 +36,7 @@ class BoardCategoryListViewModel : BaseViewModel(){
         testMakeBoardList()
     }
     private fun testMakeBoardList(){
+        finishRequestBoardCategory()
         val boardContentsTest1 = BoardContents("명기","수학 수행평가 3.3", "test")
         val boardContentsTest2 = BoardContents("명기", "수학 120쪽부터 139쪽까지")
         val boardContentsTestList = mutableListOf<BoardContents>()
@@ -43,9 +44,19 @@ class BoardCategoryListViewModel : BaseViewModel(){
         boardContentsTestList.add(boardContentsTest2)
         val boardCategory = BoardCategory("수학", 2)
         val boardCategoryContents = BoardCategoryContents(boardCategory, boardContentsTestList)
+
+
+        val boardContentsTest11 = BoardContents("철수","국어 수행평가 3.3", "test")
+        val boardContentsTest21 = BoardContents("철수", "국어 120쪽부터 139쪽까지")
+        val boardContentsTestList1 = mutableListOf<BoardContents>()
+        boardContentsTestList1.add(boardContentsTest11)
+        boardContentsTestList1.add(boardContentsTest21)
+        val boardCategory1 = BoardCategory("국어", 2)
+        val boardCategoryContents1 = BoardCategoryContents(boardCategory1, boardContentsTestList1)
+
         val boardCategoryContentsList = mutableListOf<BoardCategoryContents>()
         boardCategoryContentsList.add(boardCategoryContents)
-
+        boardCategoryContentsList.add(boardCategoryContents1)
         successLoadBoardCategoryList(boardCategoryContentsList)
     }
     fun initCategoryList(){
