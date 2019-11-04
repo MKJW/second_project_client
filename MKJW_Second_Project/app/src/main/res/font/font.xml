@@ -4,4 +4,17 @@
             android:fontStyle = "normal"
             android:fontWeight = "400"
             android:font = "@font/poor_story_regular"/>
+    <font
+            android:fontStyle = "normal"
+            android:fontWeight = "400"
+            android:font = "@font/jua_regular"/>
+    <font
+            android:fontStyle = "normal"
+            android:fontWeight = "400"
+            android:font = "@font/mc_laren_regular"/>
+    <font
+            android:fontStyle = "normal"
+            android:fontWeight = "400"
+            android:font = "@font/black_han_sans_regular"/>
+
 </font-family>
