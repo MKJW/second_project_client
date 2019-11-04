@@ -17,11 +17,9 @@
         <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
                 android:layout_alignParentTop="true"
                 android:id="@+id/join_page_activity_Toolbar"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                style="@style/Widget.Shrine.Toolbar">
             <TextView
                     android:id="@+id/join_page_activity_toolbarTitle_TextView"
                     android:text="회원가입"
@@ -40,46 +38,46 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp">
-                <TextView
-                        android:id="@+id/join_page_activity_headerName_TextView"
-                        android:text="Name"
-                        android:textStyle="bold"
-                        android:textSize="35dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"/>
-                <EditText
-                        android:id="@+id/join_page_activity_inputName_EditText"
-                        android:layout_marginTop="5dp"
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        style="@style/Widget.Shrine.TextInputLayout"
+                        android:id="@+id/join_page_activity_inputName_Layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:layout_below="@+id/join_page_activity_headerName_TextView"
-                        android:hint="Name"
-                        android:inputType="textPersonName"
-                />
+                        android:hint="이름">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/join_page_activity_inputName_EditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.Shrine.TextInputLayout"
+                        android:layout_below="@+id/join_page_activity_inputName_Layout"
+                        android:id="@+id/join_page_activity_inputEmail_Layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:hint="이메일">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/join_page_activity_inputEmail_EditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
 
                 <TextView
-                        android:layout_below="@+id/join_page_activity_inputName_EditText"
-                        android:id="@+id/join_page_activity_headerEmail_TextView"
-                        android:text="Email"
-                        android:textStyle="bold"
-                        android:textSize="35dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"/>
-                <EditText
-                        android:id="@+id/join_page_activity_inputEmail_EditText"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:layout_below="@+id/join_page_activity_headerEmail_TextView"
-                        android:hint="Email"
-                        android:inputType="textPersonName"
-                />
-                <TextView
-                        android:layout_below="@+id/join_page_activity_inputEmail_EditText"
+                        android:layout_below="@+id/join_page_activity_inputEmail_Layout"
                         android:id="@+id/join_page_activity_stateEmail_TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -87,41 +85,43 @@
                         app:mutableText="@{viewModel.getInputIDState}"
                         app:mutableTextColor="@{viewModel.getInputIDStateColor}"/>
 
-
-                <TextView
-                        android:id="@+id/join_page_activity_headerPW_TextView"
-                        android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.Shrine.TextInputLayout"
+                        android:id="@+id/join_page_activity_inputPW_Layout"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="PW"
-                        android:textStyle="bold"
-                        android:textSize="35dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:hint="비밀번호"
                         android:layout_below="@+id/join_page_activity_stateEmail_TextView"
-                        android:layout_marginTop="15dp"
-                />
-                <EditText
-                        android:id="@+id/join_page_activity_inputPW_EditText"
-                        android:layout_marginTop="5dp"
+                        app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/join_page_activity_inputPW_EditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.Shrine.TextInputLayout"
+                        android:id="@+id/join_page_activity_inputPWCheck_Layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:layout_below="@+id/join_page_activity_headerPW_TextView"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:hint="비밀번호 확인"
+                        android:layout_below="@+id/join_page_activity_inputPW_Layout"
+                        app:errorEnabled="true">
 
-                        android:inputType="textPassword"
-                        android:hint="PW"
-                />
-                <EditText
-                        android:id="@+id/join_page_activity_inputPWCheck_EditText"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:layout_below="@+id/join_page_activity_inputPW_EditText"
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/join_page_activity_inputPWCheck_EditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                        android:inputType="textPassword"
-                        android:hint="check PW"
-                />
                 <TextView
-                        android:layout_below="@+id/join_page_activity_inputPWCheck_EditText"
+                        android:layout_below="@+id/join_page_activity_inputPWCheck_Layout"
                         android:id="@+id/join_page_activity_statePW_TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -131,22 +131,31 @@
 
 
                 <Button
+                        android:fontFamily="@font/poor_story_regular"
+                        style="@style/Widget.Shrine.Button"
                         android:id="@+id/join_page_activity_join_Button"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
                         android:layout_below="@+id/join_page_activity_statePW_TextView"
-                        android:background="@drawable/custom_mint_button"
-                        android:layout_marginLeft="5dp"
-                        android:text="join"
+                        android:text="회원가입"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"/>
+                        android:layout_centerHorizontal="true"
+                        android:textStyle="bold"/>
                 <ProgressBar
-                        android:layout_marginTop="30dp"
+                        android:visibility="gone"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_below="@+id/join_page_activity_statePW_TextView"
-                />
+
+                        />
 
 
 
@@ -154,7 +163,7 @@
 
 
 
-        </ScrollView>>
+        </ScrollView>
 
     </RelativeLayout>
 

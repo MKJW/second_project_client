@@ -3,9 +3,11 @@ package com.mksoft.mkjw_second_project.ui_view
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
@@ -20,6 +22,7 @@ class JoinPageActivity : AppCompatActivity(){
     private lateinit var binding: JoinPageActivityBinding
     private lateinit var viewModel: JoinViewModel
 
+
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +31,23 @@ class JoinPageActivity : AppCompatActivity(){
         binding = DataBindingUtil.setContentView(this, R.layout.join_page_activity)
         viewModel = ViewModelProviders.of(this, ViewModelFactory()).get(JoinViewModel::class.java)
         binding.viewModel = viewModel
+        initActionBar()
         changeInputID()
         changeInputPW()
         changeInputChekPW()
         initJoinButton()
+    }
+    private fun initActionBar(){
+        setSupportActionBar(join_page_activity_Toolbar)
+        val actionbar = supportActionBar
+        actionbar!!.title = ""
+        actionbar!!.setDisplayHomeAsUpEnabled(true)
+
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun initJoinButton(){
