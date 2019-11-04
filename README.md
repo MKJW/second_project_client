@@ -68,7 +68,7 @@
 
 ## Board page
 > 게시판 페이지
-<img src="https://github.com/MKJW/second_project_client/blob/master/GIF/boardTest.gif" alt="alt text" width="250px" height="500px">
+<img src="https://github.com/MKJW/second_project_client/blob/master/GIF/boardTest2.gif" alt="alt text" width="250px" height="500px">
 
 ### Logic
 - push시에 room을 통하여 BoardCategory에 읽지 않은 게시물의 숫자를 저장하자.
