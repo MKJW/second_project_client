@@ -16,8 +16,6 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.HashMap
@@ -81,7 +79,7 @@ class BoardCategoryListViewModel : BaseViewModel() {
 
     fun initCategoryList() {
         subscription = Observable.fromCallable {
-            appDataBase.boardCategoryDao().getCategory()
+            appDataBase.boardCategoryDao().getAllCategory()
         }.concatMap { dbCategoryList ->
             Observable.just(dbCategoryList)
 

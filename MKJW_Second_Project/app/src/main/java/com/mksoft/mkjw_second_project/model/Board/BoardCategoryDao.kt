@@ -8,8 +8,13 @@ import com.mksoft.mkjw_second_project.model.Course.Course
 
 @Dao
 interface BoardCategoryDao {
-    @Query("SELECT * FROM BoardCategory WHERE categoryName")
-    fun getCategory(): List<BoardCategory>
+    @Query("SELECT * FROM BoardCategory")
+    fun getAllCategory(): List<BoardCategory>
+
+    @Query("SELECT * FROM BoardCategory WHERE categoryName LIKE:boardCategory")
+    fun getCategory(boardCategory:String): List<BoardCategory>
+
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertBoardCategory(vararg boardCategory: BoardCategory)
