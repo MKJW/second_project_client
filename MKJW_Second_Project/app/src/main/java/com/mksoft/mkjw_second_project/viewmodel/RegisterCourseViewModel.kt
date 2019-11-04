@@ -1,5 +1,6 @@
 package com.mksoft.mkjw_second_project.viewmodel
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.mksoft.mkjw_second_project.R
@@ -26,7 +27,8 @@ class RegisterCourseViewModel : BaseViewModel() {
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val buttonVisibility: MutableLiveData<Int> = MutableLiveData()
     val buttonBackGrond: MutableLiveData<Int> = MutableLiveData()
-    private val buttonClickState: MutableLiveData<Boolean> = MutableLiveData()//true : 서버로 insert 요청, false: delete요청
+    private val buttonClickState: MutableLiveData<Boolean> =
+        MutableLiveData()//true : 서버로 insert 요청, false: delete요청
     val buttonWidth: MutableLiveData<Int> = MutableLiveData()
     private lateinit var subscription: Disposable
 
@@ -45,28 +47,36 @@ class RegisterCourseViewModel : BaseViewModel() {
     }
 
     private fun requestDeleteCourse() {
-        subscription = registerCourseAPI.postUnregisterCourse(/*TEMP_SCHOOL_ID,*/ courseId, TEMP_STUDENT_ID)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { startRequestCourse() }
-            .doOnTerminate { finishrequestCourse() }
-            .subscribe(
-                { result -> initBeforeRegisteredCourseState(true) },//result가 Observable이어야 한다.
-                { failRequestCourse() }
-            )
+        subscription =
+            registerCourseAPI.postUnregisterCourse(/*TEMP_SCHOOL_ID,*/ courseId, TEMP_STUDENT_ID)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { startRequestCourse() }
+                .doOnTerminate { finishrequestCourse() }
+                .subscribe(
+                    { result -> initBeforeRegisteredCourseState(true) },//result가 Observable이어야 한다.
+                    { err ->
+                        Log.d("requestDeleteCourse", err.toString())
+                        failRequestCourse()
+                    }
+                )
     }
 
     private fun requestRegisterCourse() {
         //서버에 코스등록 요청
-        subscription = registerCourseAPI.postRegisterCourse(/*TEMP_SCHOOL_ID,*/ courseId, TEMP_STUDENT_ID)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { startRequestCourse() }
-            .doOnTerminate { finishrequestCourse() }
-            .subscribe(
-                { result -> initRegisteredCourseState(true) },//result가 Observable이어야 한다.
-                { failRequestCourse() }//일단은 겹치는 수강으로 실패한 경우
-            )
+        subscription =
+            registerCourseAPI.postRegisterCourse(/*TEMP_SCHOOL_ID,*/ courseId, TEMP_STUDENT_ID)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { startRequestCourse() }
+                .doOnTerminate { finishrequestCourse() }
+                .subscribe(
+                    { result -> initRegisteredCourseState(true) },//result가 Observable이어야 한다.
+                    { err ->
+                        Log.d("requestRegisterCourse", err.toString())
+                        failRequestCourse()
+                    }//일단은 겹치는 수강으로 실패한 경우
+                )
 
     }
 
@@ -85,8 +95,9 @@ class RegisterCourseViewModel : BaseViewModel() {
             )
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-            }
+            .subscribe ({},{
+                err->Log.d("deleteSuccessCourse", err.toString())
+            })
     }
 
     private fun insertSuccessCourse() {
@@ -96,8 +107,8 @@ class RegisterCourseViewModel : BaseViewModel() {
             )
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-            }
+            .subscribe ({},
+                {err->Log.d("insertSuccessCourse", err.toString())})
     }//성공한 과목에 대하여 디비에 저장
 
     private fun checkRequestCourse(course_id: String) {
@@ -126,14 +137,16 @@ class RegisterCourseViewModel : BaseViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { startRequestCourse() }
             .doOnTerminate { finishrequestCourse() }
-            .subscribe { result ->
+            .subscribe ({ result ->
                 if (result == 0) {
                     initBeforeRegisteredCourseState(false)
                 } else {
                     initRegisteredCourseState(false)
                 }
 
-            }
+            },{
+                err->Log.d("checkRequestCourse", err.toString())
+            })
     }//이미 신청을 한 과목인지 확인
 
     private fun startRequestCourse() {

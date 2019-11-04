@@ -1,5 +1,6 @@
 package com.mksoft.mkjw_second_project.viewmodel
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.mksoft.mkjw_second_project.api.CourseAPI
@@ -143,9 +144,10 @@ class TimeTableViewModel : BaseViewModel() {
         }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { timeLocations ->
+            .subscribe ({ timeLocations ->
                 initTimeTable(timeLocations)
-            }
+            },
+                {err-> Log.d("loadTimeLocation", err.toString())})
     }
 
     private fun initTimeTable(timeLocations: List<TimeLocation>) {

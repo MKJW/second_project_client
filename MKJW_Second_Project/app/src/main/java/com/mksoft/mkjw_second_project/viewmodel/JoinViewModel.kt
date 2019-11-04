@@ -32,6 +32,7 @@ class JoinViewModel :BaseViewModel(){
 
 
 
+    @SuppressLint("CheckResult")
     fun sendUserForJoin(email:String, pw:String, name:String){
         if(idState && pwState && name.length>=2){
 
@@ -40,7 +41,7 @@ class JoinViewModel :BaseViewModel(){
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                         result-> Log.d("Login",result.toString())}
-                    ,{})
+                    ,{err -> Log.d("sendUserForJoin", err.toString())})
 
 
         }
@@ -70,7 +71,7 @@ class JoinViewModel :BaseViewModel(){
                 }
 
             },
-                {})
+                {err -> Log.d("checkOverlapID", err.toString())})
 
     }
     fun checkPWState(PWState : Boolean){

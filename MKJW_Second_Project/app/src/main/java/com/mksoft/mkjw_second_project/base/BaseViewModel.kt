@@ -20,6 +20,7 @@ abstract class BaseViewModel: ViewModel(){
     init{
         inject()
     }
+
     private fun inject(){
         when(this){
             is RegisterCourseListViewModel -> injector.inject(this)

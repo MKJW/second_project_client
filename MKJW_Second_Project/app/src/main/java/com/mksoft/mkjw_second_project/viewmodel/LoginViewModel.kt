@@ -20,7 +20,7 @@ class LoginViewModel:BaseViewModel(){
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                     result-> Log.d("Login",result.toString())}
-                ,{})
+                ,{err -> Log.d("login", err.toString())})
 
     }
 

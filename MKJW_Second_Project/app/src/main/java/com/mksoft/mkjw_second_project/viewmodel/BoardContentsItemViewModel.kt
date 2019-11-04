@@ -17,23 +17,15 @@ class BoardContentsItemViewModel :BaseViewModel(){
     val writer: MutableLiveData<String> = MutableLiveData()
     val contents: MutableLiveData<String> = MutableLiveData()
     val imageSrc:MutableLiveData<String> = MutableLiveData()
-    lateinit var boardContents: BoardContents
-    private lateinit var subscription: Disposable
+    private lateinit var boardContents: BoardContents
 
-    override fun onCleared() {
-        super.onCleared()
-        subscription.dispose()
-    }
 
     fun bind(boardContents: BoardContents) {
         this.boardContents = boardContents
-        writer.value = this.boardContents.writer
-        contents.value = this.boardContents.contents
-        imageSrc.value = this.boardContents.imageSrc
+        writer.value = this.boardContents.id.toString()
+        contents.value = this.boardContents.content
 
     }
-
-
 
 
 }

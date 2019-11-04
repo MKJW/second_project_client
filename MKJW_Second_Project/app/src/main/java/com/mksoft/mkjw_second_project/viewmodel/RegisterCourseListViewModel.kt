@@ -1,5 +1,6 @@
 package com.mksoft.mkjw_second_project.viewmodel
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.mksoft.mkjw_second_project.api.CourseAPI
@@ -59,7 +60,8 @@ class RegisterCourseListViewModel : BaseViewModel() {
             .doOnTerminate { finishLoadCourse() }
             .subscribe(
                 { result -> successLoadCourse(result) },
-                { failLoadCourse() }
+                { err -> Log.d("loadCourses", err.toString())
+                            failLoadCourse()}
             )
     }
 

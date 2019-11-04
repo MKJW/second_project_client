@@ -19,6 +19,12 @@ import javax.inject.Singleton
 @Suppress("unused")
 class NetworkModule{
 
+
+    @Provides
+    @Singleton
+    internal  fun provideBoardAPI(retrofit: Retrofit): BoardAPI{
+        return retrofit.create(BoardAPI::class.java)
+    }
     @Provides
     @Singleton
     internal  fun provideCourseAPI(retrofit: Retrofit): CourseAPI{

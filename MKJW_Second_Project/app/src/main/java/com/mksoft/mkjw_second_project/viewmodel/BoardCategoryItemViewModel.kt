@@ -1,5 +1,6 @@
 package com.mksoft.mkjw_second_project.viewmodel
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.mksoft.mkjw_second_project.base.BaseViewModel
@@ -89,8 +90,8 @@ class BoardCategoryItemViewModel :BaseViewModel(){
             )
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-            }
+            .subscribe ({
+            },{err-> Log.d("insertBoardCategory", err.toString())})
     }
     private fun updateBoardContents(boardContentsList:MutableList<BoardContents>){
 
