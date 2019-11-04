@@ -84,6 +84,7 @@
 ### Logic
 - ID, PW  → Correct state check: rx java 이용하여 옳은 인풋값인지 검수
 - join click → loading → Login page : 서버에 가입 요청을 하고 성공 실패 여부 토스트 창으로 출력
+- toolbar back button click → login page : 툴바 뒤로가기 버튼 클릭 시 로그인 페이지로
 
 ## Register courses page
 > 수강신청 페이지
