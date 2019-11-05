@@ -23,13 +23,13 @@ class BoardCategoryItemViewModel :BaseViewModel(){
     @Inject
     lateinit var appDataBase: AppDataBase
 
-
     val categoryName:MutableLiveData<String> = MutableLiveData()
     val notYetReadCount:MutableLiveData<String> = MutableLiveData()
     val newStateVisibility:MutableLiveData<Int> = MutableLiveData()
     val upButtonVisibility:MutableLiveData<Int> = MutableLiveData()
     val downButtonVisibility:MutableLiveData<Int> = MutableLiveData()
     var expandState = false
+
     lateinit var boardCategoryContents:BoardCategoryContents
     private lateinit var subscription: Disposable
 
@@ -39,6 +39,9 @@ class BoardCategoryItemViewModel :BaseViewModel(){
         subscription.dispose()
     }
 
+    init {
+
+    }
     fun bind(boardCategoryContents:BoardCategoryContents) {
         this.boardCategoryContents = boardCategoryContents
         categoryName.value = this.boardCategoryContents.boardCategory.categoryName
@@ -64,6 +67,7 @@ class BoardCategoryItemViewModel :BaseViewModel(){
 
     }
     fun clickView(expandView:View){
+
         newStateVisibility.value = View.GONE
         readContents()//new 마크 갱신
 

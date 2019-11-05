@@ -1,5 +1,6 @@
 package com.mksoft.mkjw_second_project.viewmodel
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
@@ -31,13 +32,14 @@ class BoardCategoryListViewModel : BaseViewModel() {
     //동시에 읽지 않은 개수에 대하여 바인딩하여 페이지에 보여주는 역할을 한다.
     //여기서 내부에 저장되어 있는 카테고리를 불러오고 어뎁터에 넘겨주자.
     val boardCategoryListAdapter: BoardCategoryListAdapter = BoardCategoryListAdapter()
-    private lateinit var subscription: Disposable
+    //private lateinit var subscription: Disposable
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     private val notYetReadContentsCountHashMap: HashMap<String, Int> = hashMapOf()
-    override fun onCleared() {
-        super.onCleared()
-        subscription.dispose()
-    }
+
+//    override fun onCleared() {
+//        super.onCleared()
+//        subscription.dispose()
+//    }
 
     init {
         //initCategoryList()
@@ -77,8 +79,9 @@ class BoardCategoryListViewModel : BaseViewModel() {
         successLoadBoardCategoryList(boardCategoryContentsList)
     }
 
+    @SuppressLint("CheckResult")
     fun initCategoryList() {
-        subscription = Observable.fromCallable {
+        Observable.fromCallable {
             appDataBase.boardCategoryDao().getAllCategory()
         }.concatMap { dbCategoryList ->
             Observable.just(dbCategoryList)
@@ -109,9 +112,10 @@ class BoardCategoryListViewModel : BaseViewModel() {
     //일단 이 로직은 매번 게시판 정보들을 불러오는 방식...
     //좀 더 좋은 방법은?..
     //흠..
+    @SuppressLint("CheckResult")
     private fun loadBoardContentsList() {
 
-        subscription = boardAPI.getAllNotice()
+        boardAPI.getAllNotice()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnTerminate { finishRequestBoardCategory() }
@@ -132,8 +136,9 @@ class BoardCategoryListViewModel : BaseViewModel() {
         boardCategoryListAdapter.updateBoardCategory(boardCategoryContentsList)
     }
 
+    @SuppressLint("CheckResult")
     private fun insertBoardCategory(boardCategory: BoardCategory) {
-        subscription = Observable.fromCallable {
+        Observable.fromCallable {
             appDataBase.boardCategoryDao().insertBoardCategory(
                 boardCategory
             )
