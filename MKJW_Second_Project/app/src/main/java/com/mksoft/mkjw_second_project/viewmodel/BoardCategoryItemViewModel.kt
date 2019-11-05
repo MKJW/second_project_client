@@ -2,7 +2,10 @@ package com.mksoft.mkjw_second_project.viewmodel
 
 import android.util.Log
 import android.view.View
+import android.view.View.FOCUS_DOWN
+import android.view.View.FOCUS_UP
 import androidx.lifecycle.MutableLiveData
+import com.mksoft.mkjw_second_project.R
 import com.mksoft.mkjw_second_project.base.BaseViewModel
 import com.mksoft.mkjw_second_project.model.Board.BoardCategory
 import com.mksoft.mkjw_second_project.model.Board.BoardCategoryContents
@@ -41,7 +44,6 @@ class BoardCategoryItemViewModel :BaseViewModel(){
     }
 
     init {
-
     }
     fun bind(boardCategoryContents:BoardCategoryContents) {
         this.boardCategoryContents = boardCategoryContents
@@ -77,11 +79,12 @@ class BoardCategoryItemViewModel :BaseViewModel(){
             expandState = true
             expandButtonState()
             focusView.requestFocus()
+            focusView.clearFocus()
         }else{
-
             collapse(expandView)
             expandState = false
             yetExpandButtonState()
+
 
         }
     }

@@ -91,6 +91,9 @@ class BoardCategoryListViewModel : BaseViewModel() {
         val boardCategoryContentsList = mutableListOf<BoardCategoryContents>()
         boardCategoryContentsList.add(boardCategoryContents)
         boardCategoryContentsList.add(boardCategoryContents1)
+        boardCategoryContentsList.add(boardCategoryContents1)
+
+        boardCategoryContentsList.add(boardCategoryContents1)
         successLoadBoardCategoryList(boardCategoryContentsList)
     }
 
