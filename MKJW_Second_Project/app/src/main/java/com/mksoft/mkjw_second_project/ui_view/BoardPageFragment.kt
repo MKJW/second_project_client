@@ -25,7 +25,9 @@ class BoardPageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.board_page_fragment, container,false)
-        binding.boardPageFragmentBoardListRecyclerView.layoutManager = LinearLayoutManager(App.applicationContext(),  LinearLayoutManager.VERTICAL, false)
+        val linearLayoutManager = LinearLayoutManager(this.activity!!,  LinearLayoutManager.VERTICAL, false)
+        binding.boardPageFragmentBoardListRecyclerView.layoutManager = linearLayoutManager
+        binding.boardPageFragmentBoardListRecyclerView.setHasFixedSize(true)
         viewModel = ViewModelProviders.of(this.activity!!, ViewModelFactory()).get(BoardCategoryListViewModel::class.java)
         //this.activity!!해야지 다시 viewmodel을 만들지 않는다.
         binding.viewModel = viewModel

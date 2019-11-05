@@ -39,6 +39,7 @@
                 app:mutableVisibility="@{viewModel.getLoadingVisibility()}"/>
 
         <androidx.recyclerview.widget.RecyclerView
+
                 android:id="@+id/board_page_fragment_boardList_RecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

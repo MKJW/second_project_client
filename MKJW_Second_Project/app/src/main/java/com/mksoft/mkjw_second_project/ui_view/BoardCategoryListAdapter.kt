@@ -1,7 +1,11 @@
 package com.mksoft.mkjw_second_project.ui_view
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.RelativeLayout
+import android.widget.ScrollView
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -49,11 +53,12 @@ class BoardCategoryListAdapter: RecyclerView.Adapter<BoardCategoryListAdapter.Vi
 
         }
         fun viewClick(){
-            viewModel.clickView(binding.boardCategoryItemContentsListRecyclerView)
+            viewModel.clickView(binding.boardCategoryItemContentsListRecyclerView, binding.boardCategoryItemLayout)
 
         }
         fun initRecyclerView(){
-            binding.boardCategoryItemContentsListRecyclerView.layoutManager = LinearLayoutManager(App.applicationContext())
+            val linearLayoutManager = LinearLayoutManager(App.applicationContext())
+            binding.boardCategoryItemContentsListRecyclerView.layoutManager = linearLayoutManager
             binding.boardCategoryItemContentsListRecyclerView.setHasFixedSize(true)
         }
     }

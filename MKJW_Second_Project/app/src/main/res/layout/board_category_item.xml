@@ -68,6 +68,7 @@
                 android:layout_height="2dp"
                 android:background="#e9ecef"/>
         <androidx.recyclerview.widget.RecyclerView
+
                 android:id="@+id/board_category_item_contentsList_RecyclerView"
                 app:adapter="@{viewModel.getBoardContentsListAdapter}"
                 android:visibility="gone"

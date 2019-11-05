@@ -11,7 +11,7 @@ fun expand(view: View) {
     view.startAnimation(animation)
 }
 fun expandAction(view:View):Animation{
-    view.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+    view.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     val actualHeight  = view.measuredHeight
     view.layoutParams.height = 0
     view.visibility = View.VISIBLE
@@ -35,6 +35,7 @@ fun expandAction(view:View):Animation{
 }
 
 fun collapse(view:View){
+
     val actualHeight = view.measuredHeight
     val animation = object : Animation() {
         override fun applyTransformation(interpolatedTime: Float, t: Transformation) {

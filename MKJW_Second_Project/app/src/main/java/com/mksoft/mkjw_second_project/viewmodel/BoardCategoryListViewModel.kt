@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.RecyclerView
 import com.mksoft.mkjw_second_project.api.BoardAPI
 import com.mksoft.mkjw_second_project.base.BaseViewModel
 import com.mksoft.mkjw_second_project.model.Board.BoardCategory
@@ -45,7 +46,6 @@ class BoardCategoryListViewModel : BaseViewModel() {
         //initCategoryList()
         testMakeBoardList()
     }
-
     private fun testMakeBoardList() {
         finishRequestBoardCategory()
         val boardContentsTest1 = BoardContents("명기","수학 수행평가 3.3", "test",123)
@@ -58,7 +58,15 @@ class BoardCategoryListViewModel : BaseViewModel() {
         boardContentsTestList.add(boardContentsTest1)
         boardContentsTestList.add(boardContentsTest2)
         boardContentsTestList.add(boardContentsTest3)
-
+        boardContentsTestList.add(boardContentsTest3)
+        boardContentsTestList.add(boardContentsTest3)
+        boardContentsTestList.add(boardContentsTest3)
+        boardContentsTestList.add(boardContentsTest3)
+        boardContentsTestList.add(boardContentsTest3)
+        boardContentsTestList.add(boardContentsTest3)
+        boardContentsTestList.add(boardContentsTest3)
+        boardContentsTestList.add(boardContentsTest3)
+        boardContentsTestList.add(boardContentsTest3)
         boardContentsTestList.add(boardContentsTest4)
 
         val boardCategory = BoardCategory("수학", 2)
@@ -70,6 +78,13 @@ class BoardCategoryListViewModel : BaseViewModel() {
         val boardContentsTestList1 = mutableListOf<BoardContents>()
         boardContentsTestList1.add(boardContentsTest11)
         boardContentsTestList1.add(boardContentsTest21)
+        boardContentsTestList1.add(boardContentsTest21)
+        boardContentsTestList1.add(boardContentsTest21)
+        boardContentsTestList1.add(boardContentsTest21)
+        boardContentsTestList1.add(boardContentsTest21)
+        boardContentsTestList1.add(boardContentsTest21)
+        boardContentsTestList1.add(boardContentsTest21)
+
         val boardCategory1 = BoardCategory("국어", 2)
         val boardCategoryContents1 = BoardCategoryContents(boardCategory1, boardContentsTestList1)
 

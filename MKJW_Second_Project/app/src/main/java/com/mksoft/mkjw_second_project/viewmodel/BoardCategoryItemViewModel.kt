@@ -33,6 +33,7 @@ class BoardCategoryItemViewModel :BaseViewModel(){
     lateinit var boardCategoryContents:BoardCategoryContents
     private lateinit var subscription: Disposable
 
+
     val boardContentsListAdapter:BoardContentsListAdapter = BoardContentsListAdapter()
     override fun onCleared() {
         super.onCleared()
@@ -66,7 +67,7 @@ class BoardCategoryItemViewModel :BaseViewModel(){
         downButtonVisibility.value = View.VISIBLE
 
     }
-    fun clickView(expandView:View){
+    fun clickView(expandView:View, focusView:View){
 
         newStateVisibility.value = View.GONE
         readContents()//new 마크 갱신
@@ -75,11 +76,13 @@ class BoardCategoryItemViewModel :BaseViewModel(){
             expand(expandView)
             expandState = true
             expandButtonState()
+            focusView.requestFocus()
         }else{
 
             collapse(expandView)
             expandState = false
             yetExpandButtonState()
+
         }
     }
     private fun readContents(){
