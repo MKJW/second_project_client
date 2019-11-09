@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity() {
     private val boardPageFragment = BoardPageFragment()
+    private val timeTablePageFragment = TimeTablePageFragment()
     private val testFragment = TestFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +32,12 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction().replace(R.id.main_activity_contentsView_FrameLayout, boardPageFragment).commit()
                 }
                 item.itemId == R.id.bottom_sns_button -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.main_activity_contentsView_FrameLayout, testFragment).commit()
+                    Toast.makeText(this, "하이2", Toast.LENGTH_LONG).show()
+
                 }
                 item.itemId == R.id.bottom_time_table_button -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.main_activity_contentsView_FrameLayout, timeTablePageFragment).commit()
 
-                    Toast.makeText(this, "하이2", Toast.LENGTH_LONG).show()
                 }
                 item.itemId == R.id.bottom_option_button ->{
 

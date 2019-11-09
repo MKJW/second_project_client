@@ -13,6 +13,7 @@ import com.mksoft.mkjw_second_project.R
 import com.mksoft.mkjw_second_project.databinding.BoardPageFragmentBinding
 import com.mksoft.mkjw_second_project.di.ViewModelFactory
 import com.mksoft.mkjw_second_project.viewmodel.BoardCategoryListViewModel
+import kotlinx.android.synthetic.main.board_page_fragment.*
 
 class BoardPageFragment : Fragment() {
 
@@ -34,8 +35,5 @@ class BoardPageFragment : Fragment() {
         return binding.root
 
     }
-
-
-
 
 }

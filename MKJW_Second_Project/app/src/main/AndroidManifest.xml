@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.mksoft.mkjw_second_project">
+        package="com.mksoft.mkjw_second_project">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
             android:name=".App"
             android:allowBackup="true"
-            android:usesCleartextTraffic="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
+            android:networkSecurityConfig="@xml/network_security_config"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:networkSecurityConfig="@xml/network_security_config"
-            android:theme="@style/Theme.Shrine">
+            android:theme="@style/Theme.Shrine"
+            android:usesCleartextTraffic="true">
         <activity android:name=".ui_view.MainActivity">
-
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
 
+        </activity>
         <activity android:name=".ui_view.LoginPageActivity">
 
         </activity>
         <activity android:name=".ui_view.RegisterCoursePageActivity">
 
         </activity>
-        <activity android:name=".ui_view.JoinPageActivity"
-                  android:parentActivityName=".ui_view.LoginPageActivity">
+        <activity
+                android:name=".ui_view.JoinPageActivity"
+                android:parentActivityName=".ui_view.LoginPageActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".ui_view.LoginPageActivity" />
@@ -42,7 +42,7 @@
                 android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
