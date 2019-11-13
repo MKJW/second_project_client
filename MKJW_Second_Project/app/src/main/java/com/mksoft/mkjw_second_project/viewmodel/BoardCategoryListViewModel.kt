@@ -3,8 +3,8 @@ package com.mksoft.mkjw_second_project.viewmodel
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
+import androidx.collection.ArrayMap
 import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.RecyclerView
 import com.mksoft.mkjw_second_project.api.BoardAPI
 import com.mksoft.mkjw_second_project.base.BaseViewModel
 import com.mksoft.mkjw_second_project.model.Board.BoardCategory
@@ -16,11 +16,9 @@ import com.mksoft.mkjw_second_project.ui_view.BoardCategoryListAdapter
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
-import kotlin.collections.HashMap
 
 class BoardCategoryListViewModel : BaseViewModel() {
 
@@ -35,8 +33,8 @@ class BoardCategoryListViewModel : BaseViewModel() {
     val boardCategoryListAdapter: BoardCategoryListAdapter = BoardCategoryListAdapter()
     //private lateinit var subscription: Disposable
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
-    private val notYetReadContentsCountHashMap: HashMap<String, Int> = hashMapOf()
-
+    private val notYetReadContentsCountMap: ArrayMap<String, Int> = ArrayMap()
+    //게시판의 카테고리가 1000개 보다는 작을 것이라고 생각
 //    override fun onCleared() {
 //        super.onCleared()
 //        subscription.dispose()
@@ -110,16 +108,16 @@ class BoardCategoryListViewModel : BaseViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { startRequestBoardCategory() }
             .subscribe(
-                { result -> makeNotYetReadContentsCountHashMap(result) },
+                { result -> makeNotYetReadContentsCountMap(result) },
                 { err -> Log.d("initCategoryList", err.toString()) }
             )
 
     }
 
-    private fun makeNotYetReadContentsCountHashMap(categoryList: List<BoardCategory>) {
+    private fun makeNotYetReadContentsCountMap(categoryList: List<BoardCategory>) {
 
         for (categoryItem in categoryList) {
-            notYetReadContentsCountHashMap[categoryItem.categoryName!!] =
+            notYetReadContentsCountMap[categoryItem.categoryName!!] =
                 categoryItem.notYetReadContentsCount!!
         }
         loadBoardContentsList()

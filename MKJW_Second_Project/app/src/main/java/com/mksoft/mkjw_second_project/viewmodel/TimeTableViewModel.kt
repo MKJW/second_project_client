@@ -2,6 +2,7 @@ package com.mksoft.mkjw_second_project.viewmodel
 
 import android.util.Log
 import android.view.View
+import androidx.collection.ArrayMap
 import androidx.lifecycle.MutableLiveData
 import com.mksoft.mkjw_second_project.api.CourseAPI
 import com.mksoft.mkjw_second_project.api.SectionAPI
@@ -33,13 +34,12 @@ class TimeTableViewModel : BaseViewModel() {
     val tableHeightForBinding:MutableList<MutableList<MutableLiveData<Int>>> = initHeightTable()
     val tableNameForBinding:MutableList<MutableList<MutableLiveData<String>>> = initNameTable()
 
-    private val courseNameSection: HashMap<String, Section> = HashMap()//눌렀을 때 정보 받아오기
-    private val sectionIDCourseName: HashMap<String, String> = HashMap()
+    private val courseNameSection: ArrayMap<String, Section> = ArrayMap()//눌렀을 때 정보 받아오기
+    private val sectionIDCourseName: ArrayMap<String, String> = ArrayMap()
     //시간표를 만들때 time_location에는 sectionID가 들어있으니 이에 맞는 코스 이름을 반환 받기 위해서
     private val totalClassCnt = 31
 
-    private val dayToNumberTable: HashMap<String, Int> =
-        hashMapOf("MON" to 1, "TUE" to 2, "WED" to 3, "THU" to 4, "FRI" to 5)
+    private val dayToNumberTable: ArrayMap<String, Int> = initDayToNumberTable()
 
     private var bindedTimeTableCount: Int = 0
 
@@ -47,6 +47,15 @@ class TimeTableViewModel : BaseViewModel() {
         //finishLoadTimeTable()
         testMakeTable()
 
+    }
+    private fun initDayToNumberTable():ArrayMap<String, Int>{
+        val initDayToNumberTable:ArrayMap<String, Int> = ArrayMap()
+        initDayToNumberTable["MON"] = 1
+        initDayToNumberTable["TUE"] = 2
+        initDayToNumberTable["WED"] = 3
+        initDayToNumberTable["THU"] = 4
+        initDayToNumberTable["FRI"] = 5
+        return initDayToNumberTable
     }
     private fun initNameTable():MutableList<MutableList<MutableLiveData<String>>>{
         val initCurrentNameTable = mutableListOf<MutableList<MutableLiveData<String>>>()
@@ -73,7 +82,6 @@ class TimeTableViewModel : BaseViewModel() {
         return initCurrentHeightTable
     }
     private fun testMakeTable(){
-        //hashMapOf("MON" to 1, "TUE" to 2, "WED" to 3, "THU" to 4, "FRI" to 5)
         sectionIDCourseName["1"] = "국어"
         val timeLocation1 = TimeLocation("MON", "1", "2", "","1")
         val timeLocation2 = TimeLocation("WED", "1", "2", "","1")
