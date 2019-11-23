@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="viewModel"
+
+                type="com.mksoft.mkjw_second_project.viewmodel.FeedItemViewModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp"
+            app:cardPreventCornerOverlap="true"
+            app:contentPaddingTop="@dimen/shr_staggered_product_grid_margin_top_second">
+
+        <!-- Product card layout used in MDC-103 and onward -->
+        <LinearLayout
+                android:layout_width="@dimen/shr_staggered_product_grid_card_width_landscape"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/shr_staggered_product_grid_spacing_small"
+                android:layout_marginRight="@dimen/shr_staggered_product_grid_spacing_small"
+                android:orientation="vertical">
+
+            <com.android.volley.toolbox.NetworkImageView
+                    android:id="@+id/feed_item_feedImage_NetworkImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/shr_staggered_product_grid_card_height_landscape"
+                    android:background="?attr/colorPrimaryDark"
+                    android:scaleType="centerCrop"
+                    app:mutableImage="@{viewModel.getImageSrc}"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                <ImageView
+                        android:id="@+id/feed_item_star_imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/outline_star_border_black_24dp"
+                        android:tint="@color/colorPrimaryDark" />
+
+                <TextView
+                        app:mutableText="@{viewModel.getLikeCntNum}"
+                        android:id="@+id/feed_item_like_count_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="test"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
+

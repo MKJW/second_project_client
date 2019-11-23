@@ -16,8 +16,9 @@ class ViewModelFactory: ViewModelProvider.Factory{
             return LoginViewModel() as T
         }else if(modelClass.isAssignableFrom(BoardCategoryListViewModel::class.java)){
             return BoardCategoryListViewModel() as T
+        }else if(modelClass.isAssignableFrom(FeedPageViewModel::class.java)){
+            return FeedPageViewModel() as T
         }
-
 
         throw IllegalAccessException("Unknown ViewModel...")
     }

@@ -15,6 +15,7 @@
     <string name="not_same_pw_state">비밀번호가 일치하는지 확인하세요</string>
 
     <string name="overlap_id_state">이미 사용중이거나 탈퇴한 이메일입니다.</string>
+    <string name="feed_load_error">피드를 불러올 수 없습니다.</string>
 
 
 

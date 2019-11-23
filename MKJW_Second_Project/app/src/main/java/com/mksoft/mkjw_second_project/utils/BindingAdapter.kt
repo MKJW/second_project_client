@@ -15,6 +15,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.toolbox.ImageRequest
+import com.android.volley.toolbox.NetworkImageView
 import com.mksoft.mkjw_second_project.App
 import com.mksoft.mkjw_second_project.R
 import java.util.*
@@ -24,6 +26,16 @@ fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
     view.adapter = adapter
 }
 
+@BindingAdapter("mutableImage")
+fun setImage(view: NetworkImageView, imageSrc: MutableLiveData<String>?) {
+    val parentActivity: AppCompatActivity? = view.getParentActivity()
+    if (parentActivity != null && imageSrc != null) {
+        imageSrc.observe(parentActivity, Observer { value ->
+            //Glide.with(App.applicationContext()).load(value).into(view)
+            ImageRequester.setImageFromUrl(view, value)
+        })
+    }
+}
 @BindingAdapter("mutableVisibility")
 fun setMutableVisibility(view: View, visibility: MutableLiveData<Int>?) {
     val parentActivity: AppCompatActivity? = view.getParentActivity()
