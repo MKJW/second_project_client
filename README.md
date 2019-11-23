@@ -77,6 +77,16 @@
 - board category recyclerview item 클릭 시(확장 상태의 경우) 다운버튼을 업 버튼으로 (확장이 되지 않은 상태에서) 클릭시에는 반대로...
 
 
+## Feed page
+> 뉴스피드 페이지
+<img src="https://github.com/MKJW/second_project_client/blob/master/GIF/feedTest.gif" alt="alt text" width="250px" height="500px">
+
+### Logic
+- 서버로부터 피드에 대한 정보를 받고 뿌려주자.
+- 화면 클릭시 디테일뷰를 보여주자
+
+
+
 ## join page
 > 회원 가입 페이지
 <img src="https://github.com/MKJW/second_project_client/blob/master/GIF/join_page_test.gif" alt="alt text" width="250px" height="500px">
