@@ -8,4 +8,4 @@ const val BASE_URL: String = "https://mkjw-school.herokuapp.com/"
 //임시 학교아이디 학년
 const val TEMP_SCHOOL_ID: String = "INHA"
 const val TEMP_GRADE: String = "1"
-const val TEMP_STUDENT_ID: String = "MKJW"
+const val TEMP_STUDENT_ID: String = "chomk"

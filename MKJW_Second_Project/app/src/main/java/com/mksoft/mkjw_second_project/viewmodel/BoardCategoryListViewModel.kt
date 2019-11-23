@@ -13,6 +13,7 @@ import com.mksoft.mkjw_second_project.model.Board.BoardContents
 
 import com.mksoft.mkjw_second_project.model.DB.AppDataBase
 import com.mksoft.mkjw_second_project.ui_view.BoardCategoryListAdapter
+import com.mksoft.mkjw_second_project.utils.TEMP_STUDENT_ID
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -41,58 +42,11 @@ class BoardCategoryListViewModel : BaseViewModel() {
 //    }
 
     init {
-        //initCategoryList()
-        testMakeBoardList()
+        initCategoryList()
+        //testMakeBoardList()
     }
+
     private fun testMakeBoardList() {
-        finishRequestBoardCategory()
-        val boardContentsTest1 = BoardContents("명기","수학 수행평가 3.3", "test",123)
-        val boardContentsTest2 = BoardContents("명기", "수학 120쪽부터 139쪽까지","test",123)
-        val boardContentsTest3 = BoardContents("명기", "수학 120쪽부터 139쪽까지","test",123)
-        val boardContentsTest4 = BoardContents("명기", "수학 120쪽부터 139쪽까지","test",123)
-
-
-        val boardContentsTestList = mutableListOf<BoardContents>()
-        boardContentsTestList.add(boardContentsTest1)
-        boardContentsTestList.add(boardContentsTest2)
-        boardContentsTestList.add(boardContentsTest3)
-        boardContentsTestList.add(boardContentsTest3)
-        boardContentsTestList.add(boardContentsTest3)
-        boardContentsTestList.add(boardContentsTest3)
-        boardContentsTestList.add(boardContentsTest3)
-        boardContentsTestList.add(boardContentsTest3)
-        boardContentsTestList.add(boardContentsTest3)
-        boardContentsTestList.add(boardContentsTest3)
-        boardContentsTestList.add(boardContentsTest3)
-        boardContentsTestList.add(boardContentsTest3)
-        boardContentsTestList.add(boardContentsTest4)
-
-        val boardCategory = BoardCategory("수학", 2)
-        val boardCategoryContents = BoardCategoryContents(boardCategory, boardContentsTestList)
-
-
-        val boardContentsTest11 = BoardContents("철수","국어 수행평가 3.3", "test",123)
-        val boardContentsTest21 = BoardContents("철수", "국어 120쪽부터 139쪽까지","etet",123)
-        val boardContentsTestList1 = mutableListOf<BoardContents>()
-        boardContentsTestList1.add(boardContentsTest11)
-        boardContentsTestList1.add(boardContentsTest21)
-        boardContentsTestList1.add(boardContentsTest21)
-        boardContentsTestList1.add(boardContentsTest21)
-        boardContentsTestList1.add(boardContentsTest21)
-        boardContentsTestList1.add(boardContentsTest21)
-        boardContentsTestList1.add(boardContentsTest21)
-        boardContentsTestList1.add(boardContentsTest21)
-
-        val boardCategory1 = BoardCategory("국어", 2)
-        val boardCategoryContents1 = BoardCategoryContents(boardCategory1, boardContentsTestList1)
-
-        val boardCategoryContentsList = mutableListOf<BoardCategoryContents>()
-        boardCategoryContentsList.add(boardCategoryContents)
-        boardCategoryContentsList.add(boardCategoryContents1)
-        boardCategoryContentsList.add(boardCategoryContents1)
-
-        boardCategoryContentsList.add(boardCategoryContents1)
-        successLoadBoardCategoryList(boardCategoryContentsList)
     }
 
     @SuppressLint("CheckResult")
@@ -115,7 +69,6 @@ class BoardCategoryListViewModel : BaseViewModel() {
     }
 
     private fun makeNotYetReadContentsCountMap(categoryList: List<BoardCategory>) {
-
         for (categoryItem in categoryList) {
             notYetReadContentsCountMap[categoryItem.categoryName!!] =
                 categoryItem.notYetReadContentsCount!!
@@ -131,23 +84,44 @@ class BoardCategoryListViewModel : BaseViewModel() {
     @SuppressLint("CheckResult")
     private fun loadBoardContentsList() {
 
-        boardAPI.getAllNotice()
+        boardAPI.getAllNotice(TEMP_STUDENT_ID)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnTerminate { finishRequestBoardCategory() }
             .subscribe({ result ->
                 Log.d("test1111", Date(result[0].createdDate).toString())
+                makeBoardCategoryContents(result)
             }
                 , { err -> Log.d("test1111", err.toString()) })
 
     }
 
-    //    private fun makeBoardCategoryContents(boardContentsList:List<BoardContents>){
-//        val boardCategoryContentsList = mutableListOf<BoardCategoryContents>()
-//        for(boardContentsList in boardContentsList){
-//            boardCategoryContentsList.add(BoardCategoryContents(boardContentsList, ))
-//        }
-//    }
+    private fun makeBoardCategoryContents(boardContentsList: List<BoardContents>) {
+        val boardCategoryContentsList = mutableListOf<BoardCategoryContents>()
+        val hashCategoryContents:ArrayMap<String, MutableList<BoardContents>> = ArrayMap()
+        val currentCategoryList:MutableList<String> = mutableListOf()//지금까지 받은 카테고리
+
+        for (boardContentsItem in boardContentsList) {
+            if(hashCategoryContents[boardContentsItem.category?:"test"] == null){
+                hashCategoryContents[boardContentsItem.category?:"test"]= mutableListOf(boardContentsItem)
+                currentCategoryList.add(boardContentsItem.category ?:"test")
+            }else{
+                hashCategoryContents[boardContentsItem.category?:"test"]!!.add(boardContentsItem)
+            }
+        }
+        for(categoryListItem in currentCategoryList){
+            if(notYetReadContentsCountMap[categoryListItem] == null){
+                val boardCategory = BoardCategory(categoryListItem, 0)
+                boardCategoryContentsList.add(BoardCategoryContents(boardCategory, hashCategoryContents[categoryListItem]!!))
+
+            }else{
+                val boardCategory = BoardCategory(categoryListItem, notYetReadContentsCountMap[categoryListItem])
+                boardCategoryContentsList.add(BoardCategoryContents(boardCategory, hashCategoryContents[categoryListItem]!!))
+            }
+        }
+        successLoadBoardCategoryList(boardCategoryContentsList)
+    }
+
     private fun successLoadBoardCategoryList(boardCategoryContentsList: List<BoardCategoryContents>) {
         boardCategoryListAdapter.updateBoardCategory(boardCategoryContentsList)
     }
