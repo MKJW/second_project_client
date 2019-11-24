@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.mksoft.mkjw_second_project.R
+import com.mksoft.mkjw_second_project.utils.BackPressCloseHandler
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity() {
+    private val backPressCloseHandler: BackPressCloseHandler = BackPressCloseHandler(this)
+
     private val boardPageFragment = BoardPageFragment()
     private val timeTablePageFragment = TimeTablePageFragment()
     private val feedPageFragment = FeedPageFragment()
@@ -25,7 +28,9 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.main_activity_contentsView_FrameLayout, boardPageFragment).commit()
 
     }
-
+    override fun onBackPressed() {
+        backPressCloseHandler.onBackPressed()
+    }
     private fun initBottomLine() {
         main_activity_bottomLine_BottomNavigationView.setOnNavigationItemSelectedListener {
             item ->

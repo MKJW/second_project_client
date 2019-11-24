@@ -42,9 +42,9 @@
 
                 <ImageView
                         android:id="@+id/feed_item_star_imageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/outline_star_border_black_24dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/baseline_star_border_black_48dp"
                         android:tint="@color/colorPrimaryDark" />
 
                 <TextView
