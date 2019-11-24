@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name = "viewModel"
+                type = "com.mksoft.mkjw_second_project.viewmodel.FeedPageDetailViewModel"
+                />
+    </data>
+
+    <RelativeLayout
+            android:id="@+id/feed_page_detail_activity_layout_RelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+        <androidx.appcompat.widget.Toolbar
+                style="@style/Widget.Shrine.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentTop="true"
+                android:id="@+id/feed_page_detail_activity_toolbar_Toolbar"
+                >
+            <TextView
+                    android:id="@+id/feed_page_detail_activity_title_TextView"
+                    android:text="작성자"
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    />
+
+
+        </androidx.appcompat.widget.Toolbar>
+        <ScrollView
+                android:id="@+id/feed_page_detail_activity_contentsScrollView_ScrollView"
+                android:layout_below="@+id/feed_page_detail_activity_toolbar_Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/feed_page_detail_activity_contentsInput_Layout">
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <com.android.volley.toolbox.NetworkImageView
+                        android:layout_margin="10dp"
+                        android:id="@+id/feed_page_detail_activity_image_NetworkImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:background="?attr/colorPrimaryDark"
+                        android:scaleType="centerCrop"
+                        app:mutableImage="@{viewModel.getImageSrc}"/>
+                <ImageView
+                        android:layout_marginLeft="15dp"
+                        android:tint="@color/colorPrimaryDark"
+                        android:layout_below="@+id/feed_page_detail_activity_image_NetworkImageView"
+                        android:src="@drawable/baseline_star_border_black_48dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"/>
+                <TextView
+                        app:mutableText="@{viewModel.getLikeCntNum}"
+                        android:textStyle="bold"
+                        android:layout_marginRight="15dp"
+                        android:fontFamily="@font/poor_story_regular"
+                        android:textSize="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/feed_page_detail_activity_image_NetworkImageView"
+                        android:text="200 별"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"/>
+
+
+            </RelativeLayout>
+        </ScrollView>
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_alignParentBottom="true"
+                android:id="@+id/feed_page_detail_activity_contentsInput_Layout"
+                style="@style/Widget.Shrine.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="4dp"
+                android:hint="댓글 달기">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/feed_page_detail_activity_contentsInput_EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+</layout>

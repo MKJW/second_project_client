@@ -48,10 +48,12 @@
                         android:tint="@color/colorPrimaryDark" />
 
                 <TextView
+                        android:gravity="center"
+                        android:fontFamily="@font/poor_story_regular"
                         app:mutableText="@{viewModel.getLikeCntNum}"
                         android:id="@+id/feed_item_like_count_textView"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:text="test"
                         android:textAlignment="center"

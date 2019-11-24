@@ -21,6 +21,7 @@ interface AppComponent {
     fun inject(boardCategoryListViewModel: BoardCategoryListViewModel)
     fun inject(boardCategoryItemViewModel: BoardCategoryItemViewModel)
     fun inject(fcmServiceBindingModel: FCMServiceBindingModel)
+    fun inject(feedPageDetailViewModel: FeedPageDetailViewModel)
     @Component.Builder
     interface Builder {
         fun build(): AppComponent

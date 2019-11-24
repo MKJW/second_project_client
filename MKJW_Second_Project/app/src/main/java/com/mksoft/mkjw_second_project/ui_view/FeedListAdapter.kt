@@ -1,9 +1,13 @@
 package com.mksoft.mkjw_second_project.ui_view
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.mksoft.mkjw_second_project.App
 import com.mksoft.mkjw_second_project.R
 import com.mksoft.mkjw_second_project.databinding.FeedItemFirstBinding
 import com.mksoft.mkjw_second_project.databinding.FeedItemSecondBinding
@@ -17,7 +21,6 @@ import com.mksoft.mkjw_second_project.viewmodel.RegisterCourseViewModel
 class FeedListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var feedList: List<Feed>
-
 
     override fun getItemViewType(position: Int): Int {
         return position % 3
@@ -98,6 +101,13 @@ class FeedListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 binding.feedItemStarImageView.setImageResource(viewModel.starClick())
 
             }
+            binding.feedItemFeedImageNetworkImageView.setOnClickListener {
+                val nextIntent = Intent(App.applicationContext(),FeedPageDetailActivity::class.java)
+                nextIntent.putExtra("currentClickState", viewModel.currentClickState)
+                nextIntent.putExtra("currentStarNum", viewModel.currentStarNum)
+                nextIntent.putExtra("imageSrc", viewModel.getImageSrcString())
+                App.applicationContext().startActivity(nextIntent)
+            }
         }
     }
 
@@ -112,6 +122,13 @@ class FeedListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.feedItemStarImageView.setOnClickListener {
 
                 binding.feedItemStarImageView.setImageResource(viewModel.starClick())
+            }
+            binding.feedItemFeedImageNetworkImageView.setOnClickListener {
+                val nextIntent = Intent(App.applicationContext(),FeedPageDetailActivity::class.java)
+                nextIntent.putExtra("currentClickState", viewModel.currentClickState)
+                nextIntent.putExtra("currentStarNum", viewModel.currentStarNum)
+                nextIntent.putExtra("imageSrc", viewModel.getImageSrcString())
+                App.applicationContext().startActivity(nextIntent)
             }
         }
     }
@@ -131,6 +148,13 @@ class FeedListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.feedItemStarImageView.setOnClickListener {
 
                 binding.feedItemStarImageView.setImageResource(viewModel.starClick())
+            }
+            binding.feedItemFeedImageNetworkImageView.setOnClickListener {
+                val nextIntent = Intent(App.applicationContext(),FeedPageDetailActivity::class.java)
+                nextIntent.putExtra("currentClickState", viewModel.currentClickState)
+                nextIntent.putExtra("currentStarNum", viewModel.currentStarNum)
+                nextIntent.putExtra("imageSrc", viewModel.getImageSrcString())
+                App.applicationContext().startActivity(nextIntent)
             }
         }
     }

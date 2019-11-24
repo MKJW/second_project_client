@@ -31,6 +31,7 @@ abstract class BaseViewModel: ViewModel(){
             is BoardCategoryListViewModel -> injector.inject(this)
             is FCMServiceBindingModel -> injector.inject(this)
             is BoardCategoryItemViewModel -> injector.inject(this)
+            is FeedPageDetailViewModel -> injector.inject(this)
         }
     }
 }

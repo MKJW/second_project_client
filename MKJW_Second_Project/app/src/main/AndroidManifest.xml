@@ -23,6 +23,9 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".ui_view.FeedPageDetailActivity">
+        </activity>
+
         <activity android:name=".ui_view.LoginPageActivity">
 
         </activity>
