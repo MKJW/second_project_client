@@ -1,9 +1,11 @@
 package com.mksoft.mkjw_second_project.ui_view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -50,6 +52,7 @@ class FeedPageFragment : Fragment(){
         viewModel.errorMessage.observe(this, Observer {
                 errorMessage -> if(errorMessage != null) showError(errorMessage) else hideError()
         })
+        viewModel.updateFeedPageFragment(this)
         binding.viewModel = viewModel
         return binding.root
 
@@ -63,4 +66,13 @@ class FeedPageFragment : Fragment(){
     private fun hideError(){
         errorSnackbar?.dismiss()
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 1){
+            //인텐트에다가 피드 아이디, 갱신 스타 수 상태 넣어서 viewmodel을 통하여 갱신
+            Toast.makeText(App.applicationContext(), "test",Toast.LENGTH_LONG).show()
+        }
+    }
+
 }

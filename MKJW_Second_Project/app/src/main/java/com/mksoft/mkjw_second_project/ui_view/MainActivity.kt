@@ -1,9 +1,11 @@
 package com.mksoft.mkjw_second_project.ui_view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.mksoft.mkjw_second_project.App
 import com.mksoft.mkjw_second_project.R
 import com.mksoft.mkjw_second_project.utils.BackPressCloseHandler
 import kotlinx.android.synthetic.main.main_activity.*
@@ -53,6 +55,13 @@ class MainActivity : AppCompatActivity() {
             }
 
             return@setOnNavigationItemSelectedListener true
+        }
+    }
+
+    override fun onActivityReenter(resultCode: Int, data: Intent?) {
+        super.onActivityReenter(resultCode, data)
+        if(resultCode == 1){
+            Toast.makeText(this, "test",Toast.LENGTH_LONG).show()
         }
     }
 }

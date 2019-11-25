@@ -12,7 +12,7 @@ class FeedItemViewModel :BaseViewModel(){
     private var imageSrcString:String = ""
     val likeCntNum: MutableLiveData<String> = MutableLiveData()
     val imageSrc: MutableLiveData<String> = MutableLiveData()
-
+    val starImageState:MutableLiveData<Int> = MutableLiveData()
 
 
     fun bind(feedItem: Feed) {
@@ -22,25 +22,25 @@ class FeedItemViewModel :BaseViewModel(){
         likeCntNum.value = feedItem.likeCntNum.toString()
         imageSrc.value = feedItem.imageSrc
         if(currentClickState){
-
+            starImageState.value = R.drawable.baseline_star_black_48dp
         }else{
-
+            starImageState.value = R.drawable.baseline_star_border_black_48dp
         }
     }
     fun getImageSrcString():String{
         return imageSrcString
     }
-    fun starClick():Int{
-        return if(!currentClickState){
+    fun starClick(){
+        if(!currentClickState){
             currentClickState = true
             currentStarNum++
             likeCntNum.value = currentStarNum.toString()
-            R.drawable.baseline_star_black_48dp
+            starImageState.value = R.drawable.baseline_star_black_48dp
         }else{
             currentClickState = false
             currentStarNum--
             likeCntNum.value = currentStarNum.toString()
-            R.drawable.baseline_star_border_black_48dp
+            starImageState.value = R.drawable.baseline_star_border_black_48dp
         }
     }
 

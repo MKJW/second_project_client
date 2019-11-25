@@ -42,7 +42,8 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/baseline_star_border_black_48dp"
-                        android:tint="@color/colorPrimaryDark" />
+                        android:tint="@color/colorPrimaryDark"
+                        app:mutableImageViewSrc="@{viewModel.getStarImageState}"/>
 
                 <TextView
 

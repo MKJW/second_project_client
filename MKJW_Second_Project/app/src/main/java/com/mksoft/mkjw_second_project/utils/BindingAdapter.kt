@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TableLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -53,6 +54,13 @@ fun setMutableText(view: TextView, text: MutableLiveData<String>?) {
         text.observe(parentActivity, Observer { value -> view.text  = value?:""})//""의 의미는 뭘까?---널이면
     }
 }
+@BindingAdapter("mutableImageViewSrc")
+fun setMutableImageViewSrc(view: ImageView, imageSrcId: MutableLiveData<Int>?) {
+    val parentActivity:AppCompatActivity? = view.getParentActivity()
+    if(parentActivity != null && imageSrcId != null) {
+        imageSrcId.observe(parentActivity, Observer { value -> view.setImageResource(value)})//""의 의미는 뭘까?---널이면
+    }
+}
 
 @BindingAdapter("mutableBackground")
 fun setMutableBackground(view: View, background: MutableLiveData<Int>?) {
@@ -95,4 +103,5 @@ fun setMutableButtonLockState(view: Button, state: MutableLiveData<Boolean>?) {
         state.observe(parentActivity, Observer { value -> if(!value)view.setOnClickListener(null)})//버튼이 눌러지지 않는다.
     }
 }
+
 
