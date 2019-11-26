@@ -25,7 +25,8 @@ class FeedListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var feedList: List<Feed>
     private lateinit var currentFragment:FeedPageFragment
-
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    val feedListViewHolder:ArrayMap<Int, RecyclerView.ViewHolder> = ArrayMap()
     override fun getItemViewType(position: Int): Int {
         return position % 3
     }
@@ -68,7 +69,27 @@ class FeedListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
 
     }
+    fun updateFeedItem(currentClickState: Boolean, currentStarNum: Int, feedId: String){
+        for(feedIDX in feedList.indices){
+            if(feedList[feedIDX].feedID.equals(feedId)){
+                when(feedIDX %3){
+                    0 -> {
+                        (feedListViewHolder[feedIDX] as FeedFirstViewHolder).updateViewModel(currentClickState, currentStarNum)
 
+                    }
+                    1 -> {
+                        (feedListViewHolder[feedIDX] as FeedSecondViewHolder).updateViewModel(currentClickState, currentStarNum)
+
+                    }
+                    else -> {
+                        (feedListViewHolder[feedIDX] as FeedThirdViewHolder).updateViewModel(currentClickState, currentStarNum)
+
+                    }                }
+
+
+            }
+        }
+    }
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (position % 3) {
             0 -> {
@@ -84,6 +105,7 @@ class FeedListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             }
         }
+        feedListViewHolder[position] = holder
 
     }
 
@@ -102,7 +124,9 @@ class FeedListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class FeedFirstViewHolder(private val binding: FeedItemFirstBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val viewModel: FeedItemViewModel = FeedItemViewModel()
-
+        fun updateViewModel(currentClickState: Boolean, currentStarNum: Int){
+            viewModel.updateViewModel(currentClickState, currentStarNum)
+        }
         fun bind(feedItem: Feed, currentPageFragment: FeedPageFragment) {
             viewModel.bind(feedItem)//뷰모델 바인딩할 값
             binding.viewModel = viewModel
@@ -115,6 +139,8 @@ class FeedListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 nextIntent.putExtra("currentClickState", viewModel.currentClickState)
                 nextIntent.putExtra("currentStarNum", viewModel.currentStarNum)
                 nextIntent.putExtra("imageSrc", viewModel.getImageSrcString())
+                nextIntent.putExtra("feedId", viewModel.getFeedId())
+
                 currentPageFragment.startActivityForResult(nextIntent, 1)
             }
         }
@@ -123,7 +149,9 @@ class FeedListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class FeedSecondViewHolder(private val binding: FeedItemSecondBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val viewModel: FeedItemViewModel = FeedItemViewModel()
-
+        fun updateViewModel(currentClickState: Boolean, currentStarNum: Int){
+            viewModel.updateViewModel(currentClickState, currentStarNum)
+        }
         fun bind(feedItem: Feed, currentPageFragment: FeedPageFragment) {
             viewModel.bind(feedItem)//뷰모델 바인딩할 값
 
@@ -136,6 +164,8 @@ class FeedListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 nextIntent.putExtra("currentClickState", viewModel.currentClickState)
                 nextIntent.putExtra("currentStarNum", viewModel.currentStarNum)
                 nextIntent.putExtra("imageSrc", viewModel.getImageSrcString())
+                nextIntent.putExtra("feedId", viewModel.getFeedId())
+
                 currentPageFragment.startActivityForResult(nextIntent, 1)
             }
         }
@@ -149,6 +179,9 @@ class FeedListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class FeedThirdViewHolder(private val binding: FeedItemThirdBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val viewModel: FeedItemViewModel = FeedItemViewModel()
+        fun updateViewModel(currentClickState: Boolean, currentStarNum: Int){
+            viewModel.updateViewModel(currentClickState, currentStarNum)
+        }
         fun bind(feedItem: Feed, currentPageFragment: FeedPageFragment) {
             viewModel.bind(feedItem)//뷰모델 바인딩할 값
 
@@ -161,6 +194,8 @@ class FeedListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 nextIntent.putExtra("currentClickState", viewModel.currentClickState)
                 nextIntent.putExtra("currentStarNum", viewModel.currentStarNum)
                 nextIntent.putExtra("imageSrc", viewModel.getImageSrcString())
+                nextIntent.putExtra("feedId", viewModel.getFeedId())
+
                 currentPageFragment.startActivityForResult(nextIntent, 1)
             }
         }

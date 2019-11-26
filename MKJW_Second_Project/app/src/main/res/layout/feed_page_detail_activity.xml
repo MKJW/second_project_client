@@ -52,12 +52,14 @@
                         android:scaleType="centerCrop"
                         app:mutableImage="@{viewModel.getImageSrc}"/>
                 <ImageView
+                        android:id="@+id/feed_page_detail_activity_starImage_ImageView"
                         android:layout_marginLeft="15dp"
                         android:tint="@color/colorPrimaryDark"
                         android:layout_below="@+id/feed_page_detail_activity_image_NetworkImageView"
                         android:src="@drawable/baseline_star_border_black_48dp"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"/>
+                        android:layout_height="50dp"
+                        app:mutableImageViewSrc="@{viewModel.getStarImageState}"/>
                 <TextView
                         app:mutableText="@{viewModel.getLikeCntNum}"
                         android:textStyle="bold"

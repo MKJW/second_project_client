@@ -71,7 +71,9 @@ class FeedPageFragment : Fragment(){
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 1){
             //인텐트에다가 피드 아이디, 갱신 스타 수 상태 넣어서 viewmodel을 통하여 갱신
-            Toast.makeText(App.applicationContext(), "test",Toast.LENGTH_LONG).show()
+            //디테일뷰에서의 상태를 어뎁터에서 유지하기 위하여
+            viewModel.setChangedFeedItem(data!!.getBooleanExtra("currentClickState", false), data!!.getIntExtra("currentStarNum", 0), data!!.getStringExtra("feedId"))
+
         }
     }
 
